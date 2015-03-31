@@ -20,5 +20,8 @@
     "mocha": "^2.2.1",
     "react": "^0.12.2",
     "reflux": "^0.2.7"
+  },
+  "scripts": {
+    "prepublish": "./scripts/prepublish.sh"
   }
 }
