@@ -1,6 +1,6 @@
 {
   "name": "react-markdown-editor",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A markdown editor with preview, implemented with React.js and Reflux",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,15 @@
     "react": "^0.12.2",
     "reflux": "^0.2.7"
   },
+  "bugs": {
+    "url": "https://github.com/jrm2k6/react-markdown-editor/issues",
+    "email": "jeremy.dagorn@gmail.com"
+  },
   "scripts": {
     "prepublish": "./scripts/prepublish.sh"
+  },
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/jrm2k6/react-markdown-editor.git"
   }
 }
