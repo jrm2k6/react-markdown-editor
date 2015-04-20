@@ -40,11 +40,11 @@ var MarkdownEditorMenu = React.createClass({
         }
 
         return (
-            <div style={styleMarkdownMenu} className="col-md-6 pull-right">
+            <div style={styleMarkdownMenu} className="col-md-6 pull-right md-editor-menu">
                 <div role="button" style={styleMarkdownBtn} className="fa fa-bold" onClick={this.handleBoldButtonClick}></div>
                 <div role="button" style={styleMarkdownBtn} className="fa fa-italic" onClick={this.handleItalicButtonClick}></div>
-                <div role="button" style={styleMarkdownBtn} className="fa" onClick={this.handleHeaderButtonClick}>Header</div>
-                <div role="button" style={styleMarkdownBtn} className="fa" onClick={this.handleSubHeaderButtonClick}>Subheader</div>
+                <div role="button" style={styleMarkdownBtn} className="fa md-editor-menu-header" onClick={this.handleHeaderButtonClick}>Header</div>
+                <div role="button" style={styleMarkdownBtn} className="fa md-editor-menu-subheader" onClick={this.handleSubHeaderButtonClick}>Subheader</div>
                 <div role="button" style={styleMarkdownBtn} className="fa fa-list-ul" onClick={this.handleListButtonClick}></div>
                 <div role="button" style={styleMarkdownBtn} className="fa fa-file-image-o" onClick={this.handleImageButtonClick}></div>
                 <div role="button" style={styleMarkdownBtn} className="fa fa-link" onClick={this.handleLinkButtonClick}></div>
@@ -107,14 +107,25 @@ var MarkdownEditorTabs = React.createClass({
             "border": "none"
         };
 
-        return <div className="col-md-4">
-                 <ul style={styleMarkdownEditorTabs} className="nav nav-tabs">
-                    <li className={(this.state.activeTab == 0)? "active": ""}
+        var tabClassName = "md-editor-tabs-item";
+        var editorTabClassName = tabClassName;
+        var previewTabClassName = tabClassName;
+        if (this.state.activeTab === 0) {
+            editorTabClassName += " active";
+        } else if (this.state.activeTab === 1) {
+            previewTabClassName += " active";
+        }
+
+        return (
+            <div className="col-md-4 md-editor-tabs">
+                <ul style={styleMarkdownEditorTabs} className="nav nav-tabs">
+                    <li className={editorTabClassName}
                         onClick={this.handleClick.bind(this, "clickEditorTab")}><a>Editor</a></li>
-                    <li className={(this.state.activeTab == 1)? "active": ""}
+                    <li className={previewTabClassName}
                         onClick={this.handleClick.bind(this, "clickPreviewTab")}><a>Preview</a></li>
-                 </ul>
-                </div>;
+                </ul>
+            </div>
+        );
     },
 
     handleClick: function(actionName) {
@@ -222,7 +233,7 @@ var MarkdownEditor = React.createClass({
         }
 
         return <div style={styleMarkdownEditorContainer}>
-                    <div style={styleMarkdownEditorHeader} className="row">
+                    <div style={styleMarkdownEditorHeader} className="row md-editor-header">
                         {editorMenu}
                         <MarkdownEditorTabs />
                     </div>
