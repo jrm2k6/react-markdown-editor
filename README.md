@@ -2,7 +2,7 @@
 A markdown editor using React/Reflux.
 
 [![Build Status](http://img.shields.io/travis/jrm2k6/react-markdown-editor/master.svg?style=flat-square)](https://travis-ci.org/jrm2k6/react-markdown-editor)
-[![License](https://img.shields.io/npm/l/express.svgstyle=flat-square)](http://www.opensource.org/licenses/MIT)
+[![License](https://img.shields.io/npm/l/express.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)
 [![Latest Version](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/react-markdown-editor)
 [![Total Downloads](https://img.shields.io/npm/dm/localeval.svg?style=flat-square)](https://www.npmjs.com/package/react-markdown-editor)
 
