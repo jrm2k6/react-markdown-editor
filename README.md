@@ -1,7 +1,10 @@
 # react-markdown-editor
 A markdown editor using React/Reflux.
 
-####WARNING: This is some work in progress. Please check the list of issues before opening a new one. I am really willing to fix/add features to it, but I do it on my free time, so it can take a bit of time. Of course, contributions are welcome.
+[![Build Status](http://img.shields.io/travis/jrm2k6/react-markdown-editor/master.svg?style=flat-square)](https://travis-ci.org/jrm2k6/react-markdown-editor)
+[![License](https://img.shields.io/npm/l/express.svgstyle=flat-square)](http://www.opensource.org/licenses/MIT)
+[![Latest Version](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/react-markdown-editor)
+[![Total Downloads](https://img.shields.io/npm/dm/localeval.svg?style=flat-square)](https://www.npmjs.com/package/react-markdown-editor)
 
 ## Installation
 ``` npm install --save react-markdown-editor ```
