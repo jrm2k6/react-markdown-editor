@@ -1,6 +1,9 @@
 var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
 var Reflux = require('reflux');
 
+var _timerClick;
+var _canClear = true;
+
 var TextAreaSelectionMixin = {
     mixins: [Reflux.ListenerMixin],
 
@@ -13,7 +16,9 @@ var TextAreaSelectionMixin = {
     },
 
     clearSelection: function() {
-        MarkdownEditorActions.clearSelection();
+        if (canClear) {
+            MarkdownEditorActions.clearSelection();
+        }
     },
 
     componentDidMount: function() {
@@ -29,9 +34,10 @@ var TextAreaSelectionMixin = {
     },
 
     onSelectHandler: function(e) {
-        var _selectionStart = e.srcElement.selectionStart;
-        var _selectionEnd = e.srcElement.selectionEnd;
-        var _selectedText = e.srcElement.value.slice(_selectionStart, _selectionEnd);
+        var _eventSource = this._getEventSource(e);
+        var _selectionStart = _eventSource.selectionStart;
+        var _selectionEnd = _eventSource.selectionEnd;
+        var _selectedText = _eventSource.value.slice(_selectionStart, _selectionEnd);
 
         var selection = {
             selectionStart: _selectionStart,
@@ -40,6 +46,7 @@ var TextAreaSelectionMixin = {
         }
 
         MarkdownEditorActions.setSelection(selection);
+        this._preventClearSelectionAfterSelectIfNeeded(e);
     },
 
     unbindSelectEvent: function() {
@@ -49,6 +56,20 @@ var TextAreaSelectionMixin = {
 
     componentWillUnmount: function() {
         this.unbindSelectEvent();
+    },
+
+    _getEventSource: function(e) {
+        return e.srcElement || e.target;
+    },
+
+    _preventClearSelectionAfterSelectIfNeeded: function(e) {
+        if (e.target !== null) {
+            canClear = false;
+            _timerClick = setTimeout(function() {
+                canClear = true;
+                _timerClick = null;
+            }, 100);
+        }
     }
 }
 
