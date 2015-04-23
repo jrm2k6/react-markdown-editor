@@ -16,7 +16,7 @@ var TextAreaSelectionMixin = {
     },
 
     clearSelection: function() {
-        if (canClear) {
+        if (_canClear) {
             MarkdownEditorActions.clearSelection();
         }
     },
@@ -64,9 +64,9 @@ var TextAreaSelectionMixin = {
 
     _preventClearSelectionAfterSelectIfNeeded: function(e) {
         if (e.target !== null) {
-            canClear = false;
+            _canClear = false;
             _timerClick = setTimeout(function() {
-                canClear = true;
+                _canClear = true;
                 _timerClick = null;
             }, 100);
         }
