@@ -6,6 +6,7 @@ var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
 var MarkdownEditor = require('../src/MarkdownEditor.js');
 var MarkdownEditorActions = require('../src/actions/MarkdownEditorActions.js');
+var PublicMarkdownEditorActions = require('../src/actions/PublicMarkdownEditorActions.js');
 
 
 afterEach(function() {
@@ -183,6 +184,24 @@ describe('menu button interactions', function() {
 
         // then
         expect(MarkdownEditorActions.makeLink).toBeCalled();
+    });
+});
+
+describe('textarea changes behavior', function() {
+    afterEach(function() {
+        PublicMarkdownEditorActions.updateText.mockClear();
+    });
+
+    it('verify typing dispatches an action', function() {
+        //given 
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
+        
+        // when
+        TestUtils.Simulate.change(textarea.getDOMNode(), "markdownContent");
+
+        // then
+        expect(PublicMarkdownEditorActions.updateText).toBeCalled();
     });
 });
 
