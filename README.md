@@ -46,10 +46,10 @@ To be able to do so, just ```require('react-markdown-editor').MarkdownEditorCont
 ## Dependencies
 You can modify the styles directly by modifying the styles declared in ```dist/MarkdownEditor.js```. The pre-existing styles assume that you are using Bootstrap and Font Awesome.
 ## TODO
-- [ ] Cross-browsers issues
+- [x] Cross-browsers issues
 - [ ] Better solution for styles
 - [ ] Upgrade to React 0.13
-- [ ] Unit testing
+- [x] Unit testing
 - [ ] Cross-browsers testing
 
 ## Issues/Contribution
