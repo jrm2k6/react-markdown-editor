@@ -8,6 +8,9 @@ A markdown editor using React/Reflux.
 [![Latest Version](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/react-markdown-editor)
 [![Total Downloads](https://img.shields.io/npm/dm/localeval.svg?style=flat-square)](https://www.npmjs.com/package/react-markdown-editor)
 
+##TLDR
+Demo here: http://jrm2k6.github.io/react-markdown-editor/
+
 ## Installation
 ``` npm install --save react-markdown-editor ```
 
