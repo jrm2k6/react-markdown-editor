@@ -7,6 +7,7 @@ var MarkdownEditorActions = require('./actions/MarkdownEditorActions');
 var PublicMarkdownEditorActions = require('./actions/PublicMarkdownEditorActions');
 var TextAreaSelectionMixin = require('./mixins/TextAreaSelectionMixin');
 var MarkdownEditorStore = require('./stores/MarkdownEditorStore');
+var MarkdownSelectionStore = require('./stores/MarkdownSelectionStore');
 var MarkdownEditorTabsInteractionStore = require('./stores/MarkdownEditorTabsInteractionStore');
 var MarkdownTokenFactory = require('./utils/MarkdownTokenFactory');
 var MarkdownUtils = require('./utils/MarkdownUtils');
@@ -21,6 +22,16 @@ var ImageMarkdownToken = MarkdownTokenFactory.ImageMarkdownToken;
 
 var MarkdownEditorMenu = React.createClass({
     mixins: [Reflux.ListenerMixin],
+    
+    getInitialState: function() {
+        return {
+            enabled: false
+        };
+    },
+
+    componentWillMount: function() {
+        this.listenTo(MarkdownSelectionStore, this.handleMarkdownSelectionStore);
+    },
 
     render: function() {
         var styleMarkdownBtn = {
@@ -39,17 +50,26 @@ var MarkdownEditorMenu = React.createClass({
             "margin": "5px 0"
         }
 
+        var _disabled = (!this.state.enabled) ? "disabled" : "";
         return (
             <div style={styleMarkdownMenu} className="col-md-6 pull-right md-editor-menu">
-                <div role="button" style={styleMarkdownBtn} className="fa fa-bold" onClick={this.handleBoldButtonClick}></div>
-                <div role="button" style={styleMarkdownBtn} className="fa fa-italic" onClick={this.handleItalicButtonClick}></div>
-                <div role="button" style={styleMarkdownBtn} className="fa md-editor-menu-header" onClick={this.handleHeaderButtonClick}>Header</div>
-                <div role="button" style={styleMarkdownBtn} className="fa md-editor-menu-subheader" onClick={this.handleSubHeaderButtonClick}>Subheader</div>
-                <div role="button" style={styleMarkdownBtn} className="fa fa-list-ul" onClick={this.handleListButtonClick}></div>
-                <div role="button" style={styleMarkdownBtn} className="fa fa-file-image-o" onClick={this.handleImageButtonClick}></div>
-                <div role="button" style={styleMarkdownBtn} className="fa fa-link" onClick={this.handleLinkButtonClick}></div>
+                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa fa-bold" onClick={this.handleBoldButtonClick}></div>
+                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa fa-italic" onClick={this.handleItalicButtonClick}></div>
+                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa md-editor-menu-header" onClick={this.handleHeaderButtonClick}>Header</div>
+                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa md-editor-menu-subheader" onClick={this.handleSubHeaderButtonClick}>Subheader</div>
+                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa fa-list-ul" onClick={this.handleListButtonClick}></div>
+                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa fa-file-image-o" onClick={this.handleImageButtonClick}></div>
+                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa fa-link" onClick={this.handleLinkButtonClick}></div>
            </div>
         );
+    },
+
+    handleMarkdownSelectionStore: function(data) {
+        if (data.type === 'clear') {
+            this.setState({enabled: false});
+        } else if (data.type === 'set') {
+            this.setState({enabled: true});
+        }
     },
 
     handleBoldButtonClick: function() {

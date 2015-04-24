@@ -1,5 +1,6 @@
 var Reflux = require('reflux');
 var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
+var MarkdownSelectionActions = require('../actions/MarkdownSelectionActions');
 
 var MarkdownEditorStore = Reflux.createStore({
 	init: function() {
@@ -51,10 +52,12 @@ var MarkdownEditorStore = Reflux.createStore({
 
 	handleClearSelection: function() {
 		this.currentSelection = null;
+		MarkdownSelectionActions.selectionCleared();
 	},
 
 	handleSetSelection: function(_selection) {
 		this.currentSelection = _selection;
+		MarkdownSelectionActions.selectionSet();
 	}
 });
 
