@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>React-markdown-editor by jrm2k6</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>React-markdown-editor</h1>
+        <h2>A markdown editor using React/Reflux</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/jrm2k6/react-markdown-editor/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/jrm2k6/react-markdown-editor/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/jrm2k6/react-markdown-editor" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="react-markdown-editor" class="anchor" href="#react-markdown-editor" aria-hidden="true"><span class="octicon octicon-link"></span></a>react-markdown-editor</h1>
+
+<p>A markdown editor using React/Reflux.</p>
+
+<p><a href="https://travis-ci.org/jrm2k6/react-markdown-editor"><img src="http://img.shields.io/travis/jrm2k6/react-markdown-editor/master.svg?style=flat-square" alt="Build Status"></a>
+<a href="http://www.opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/express.svg?style=flat-square" alt="License"></a>
+<a href="https://www.npmjs.com/package/react-markdown-editor"><img src="https://img.shields.io/npm/v/npm.svg?style=flat-square" alt="Latest Version"></a>
+<a href="https://www.npmjs.com/package/react-markdown-editor"><img src="https://img.shields.io/npm/dm/localeval.svg?style=flat-square" alt="Total Downloads"></a></p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p><code>npm install --save react-markdown-editor</code></p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<p>From the UI:</p>
+
+<ul>
+<li>Bold</li>
+<li>Italic</li>
+<li>Header</li>
+<li>Subheader</li>
+<li>Link</li>
+<li>Unordered List</li>
+<li>Inline Images</li>
+</ul>
+
+<p>Of course it is a regular markdown editor (using the nice <a href="https://github.com/evilstreak/markdown-js">markdown-js</a> library), so you are not limited to the UI. </p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>To render the component:</p>
+
+<pre><code>var React = require('react');
+var MarkdownEditor = require('react-markdown-editor').MarkdownEditor;
+
+var TestComponent = React.createClass({
+    render: function() {
+        return (
+            &lt;MarkdownEditor initialContent="Test"/&gt;
+        );
+    }
+});
+
+React.render(&lt;TestComponent /&gt;, document.getElementById('content'));
+</code></pre>
+
+<p><code>&lt;MarkdownEditor /&gt;</code> has only one prop, the initial content of the textarea.</p>
+
+<p>You can also listen to content changes on the editor. If you are using Reflux, by listening to the changes on <code>MarkdownEditorContentStore</code>.
+To be able to do so, just <code>require('react-markdown-editor').MarkdownEditorContentStore;</code></p>
+
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>You can modify the styles directly by modifying the styles declared in <code>dist/MarkdownEditor.js</code>. The pre-existing styles assume that you are using Bootstrap and Font Awesome.</p>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li>[x] Cross-browsers issues</li>
+<li>[ ] Better solution for styles</li>
+<li>[ ] Upgrade to React 0.13</li>
+<li>[x] Unit testing</li>
+<li>[ ] Cross-browsers testing</li>
+</ul>
+
+<h2>
+<a id="issuescontribution" class="anchor" href="#issuescontribution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues/Contribution</h2>
+
+<p>You can open an issue on the github repo, or contact me directly by email.</p>
+
+<h2>
+<a id="screenshots" class="anchor" href="#screenshots" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots</h2>
+
+<p><img src="http://i.imgur.com/XPdJmqm.png" alt="Editing tab" title="Editing tab">
+<img src="http://i.imgur.com/uavBSUN.png" alt="Preview tab" title="Preview tab"></p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
