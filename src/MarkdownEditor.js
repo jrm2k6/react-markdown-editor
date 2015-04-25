@@ -171,7 +171,7 @@ var MarkdownEditorContent = React.createClass({
 
         return  <textarea ref="editor" className="md-editor-textarea" 
                           style={styleMarkdownTextArea}
-                          onChange={this.onChange}>
+                          onClick={this.clearSelection}
                 </textarea>
     },
 
