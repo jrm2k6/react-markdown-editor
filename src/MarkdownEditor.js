@@ -5,6 +5,7 @@ var Reflux = require('reflux');
 var Markdown = require( "markdown" ).markdown;
 var MarkdownEditorActions = require('./actions/MarkdownEditorActions');
 var PublicMarkdownEditorActions = require('./actions/PublicMarkdownEditorActions');
+var MarkdownSelectionActions = require('./actions/MarkdownSelectionActions');
 var TextAreaSelectionMixin = require('./mixins/TextAreaSelectionMixin');
 var MarkdownEditorStore = require('./stores/MarkdownEditorStore');
 var MarkdownSelectionStore = require('./stores/MarkdownSelectionStore');
@@ -51,6 +52,7 @@ var MarkdownEditorMenu = React.createClass({
         }
 
         var _disabled = (!this.state.enabled) ? "disabled" : "";
+
         return (
             <div style={styleMarkdownMenu} className="col-md-6 pull-right md-editor-menu">
                 <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa fa-bold" onClick={this.handleBoldButtonClick}></div>
@@ -181,7 +183,7 @@ var MarkdownEditorContent = React.createClass({
         var content = this.refs.editor.getDOMNode().value;
         var markdownContent = MarkdownUtils.toMarkdown(content);
         PublicMarkdownEditorActions.updateText(markdownContent);
-        
+
         this.props.onChangeHandler(content.replace(/[\n\r]/g, '\n'));
     },
 
