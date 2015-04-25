@@ -12,7 +12,7 @@ var browserify = require('browserify');
 var reactify = require('reactify');
 var envify = require('envify');
 
-var sourceJs = './dist/demo.js';
+var sourceJs = './js/main.js';
 var destJs = './compiled-demo.js';
 var bundleFolder = 'dist/bundle/'
 

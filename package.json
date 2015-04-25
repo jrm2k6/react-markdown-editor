@@ -10,7 +10,7 @@
     "gulp-uglify": "^1.1.0",
     "gulp-uncss": "^1.0.0",
     "gulp-util": "^3.0.2",
-    "react-markdown-editor": "0.0.6",
+    "react-markdown-editor": "0.0.5",
     "reactify": "^1.0.0",
     "run-sequence": "^0.3.2",
     "vinyl-source-stream": "^1.0.0",
