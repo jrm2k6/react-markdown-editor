@@ -2,6 +2,7 @@
 A markdown editor using React/Reflux.
 
 ## WARNING: still betaish.
+## WARNING-bis: this branch is only for react v0.12. To the newest version checkout the master branch.
 
 [![Build Status](http://img.shields.io/travis/jrm2k6/react-markdown-editor/master.svg?style=flat-square)](https://travis-ci.org/jrm2k6/react-markdown-editor)
 [![License](https://img.shields.io/npm/l/express.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)
