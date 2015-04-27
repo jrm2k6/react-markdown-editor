@@ -180,7 +180,7 @@ var MarkdownEditorContent = React.createClass({
     },
 
     onChange: function() {
-        var content = this.refs.editor.getDOMNode().value;
+        var content = React.findDOMNode(this.refs.editor).value;
         var markdownContent = MarkdownUtils.toMarkdown(content);
         PublicMarkdownEditorActions.updateText(markdownContent);
 
@@ -188,11 +188,11 @@ var MarkdownEditorContent = React.createClass({
     },
 
     componentDidMount: function() {
-        this.refs.editor.getDOMNode().value = this.props.content;
+        React.findDOMNode(this.refs.editor).value = this.props.content;
     },
 
     componentDidUpdate: function() {
-        this.refs.editor.getDOMNode().value = this.props.content;  
+        React.findDOMNode(this.refs.editor).value = this.props.content;  
     }
 });
 
