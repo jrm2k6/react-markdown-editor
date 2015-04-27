@@ -19,9 +19,9 @@
   "dependencies": {
     "markdown": "^0.5.0",
     "mocha": "^2.2.1",
-    "react": "^0.12.2",
-    "reflux": "^0.2.7",
-    "react-tools": "*"
+    "react": "^0.13.2",
+    "react-tools": "*",
+    "reflux": "^0.2.7"
   },
   "bugs": {
     "url": "https://github.com/jrm2k6/react-markdown-editor/issues",
@@ -29,7 +29,10 @@
   },
   "jest": {
     "scriptPreprocessor": "./scripts/preprocessor.js",
-    "unmockedModulePathPatterns": ["./node_modules/react", "./node_modules/reflux"]
+    "unmockedModulePathPatterns": [
+      "./node_modules/react",
+      "./node_modules/reflux"
+    ]
   },
   "repository": {
     "type": "git",
