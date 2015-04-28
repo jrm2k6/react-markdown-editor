@@ -53,7 +53,7 @@ You can modify the styles directly by modifying the styles declared in ```dist/M
 ## TODO
 - [x] Cross-browsers issues
 - [ ] Better solution for styles
-- [ ] Upgrade to React 0.13
+- [x] Upgrade to React 0.13
 - [x] Unit testing
 - [ ] Cross-browsers testing
 
