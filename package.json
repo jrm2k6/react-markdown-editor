@@ -17,9 +17,7 @@
   "author": "Jeremy Dagorn <jeremy.dagorn@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "jest-cli": "^0.4.0",
     "markdown": "^0.5.0",
-    "mocha": "^2.2.1",
     "react": "^0.13.2",
     "react-tools": "^0.13.2",
     "reflux": "^0.2.7"
@@ -33,13 +31,16 @@
     "unmockedModulePathPatterns": [
       "./node_modules/react",
       "./node_modules/reflux"
-    ]
+    ],
+    "collectCoverage": true
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jrm2k6/react-markdown-editor.git"
   },
   "devDependencies": {
-    "jest-cli": "^0.4.0"
+    "codeclimate-test-reporter": "0.0.4",
+    "jest-cli": "^0.4.0",
+    "mocha": "^2.2.4",
   }
 }
