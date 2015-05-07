@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prepublish": "./scripts/prepublish.sh",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "keywords": [
     "markdown",
