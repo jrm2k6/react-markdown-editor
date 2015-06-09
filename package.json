@@ -41,6 +41,6 @@
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
     "jest-cli": "^0.4.0",
-    "mocha": "^2.2.4",
+    "mocha": "^2.2.4"
   }
 }
