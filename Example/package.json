@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
     "react-markdown-editor": "file:..",
     "webpack": "^1.12.9"
   },
