@@ -38,8 +38,8 @@
     "reflux": "^0.3.0"
   },
   "peerDependencies": {
-    "react": "^0.14.2",
-    "react-dom": "^0.14.2"
+    "react": "^0.13.2",
+    "react-dom": "^0.13.2"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
