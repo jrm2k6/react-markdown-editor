@@ -7,3 +7,7 @@ addons:
 
 after_script:
   - codeclimate < coverage/lcov.info
+
+notifications:
+  email:
+    - jeremy.dagorn@gmail.com
