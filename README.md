@@ -54,6 +54,15 @@ You can modify the styles directly by modifying the styles declared in ```dist/M
 - [ ] Better solution for styles
 - [ ] Cross-browsers testing
 
+## Example
+
+```
+cd Example
+npm install
+webpack
+open index.html
+```
+
 ## Issues/Contribution
 You can open an issue on the github repo, or contact me directly by email.
 
