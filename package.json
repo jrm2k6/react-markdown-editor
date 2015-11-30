@@ -17,12 +17,6 @@
   ],
   "author": "Jeremy Dagorn <jeremy.dagorn@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "markdown": "^0.5.0",
-    "react": "^0.13.2",
-    "react-tools": "^0.13.2",
-    "reflux": "^0.2.7"
-  },
   "bugs": {
     "url": "https://github.com/jrm2k6/react-markdown-editor/issues",
     "email": "jeremy.dagorn@gmail.com"
@@ -38,6 +32,14 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jrm2k6/react-markdown-editor.git"
+  },
+  "dependencies": {
+    "markdown": "^0.5.0",
+    "reflux": "^0.3.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
