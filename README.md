@@ -1,7 +1,6 @@
 # react-markdown-editor
 A markdown editor using React/Reflux.
 
-## WARNING: still betaish.
 
 [![Build Status](http://img.shields.io/travis/jrm2k6/react-markdown-editor/master.svg?style=flat-square)](https://travis-ci.org/jrm2k6/react-markdown-editor)
 [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg?style=flat-square)](https://codeclimate.com/github/jrm2k6/react-markdown-editor)
