@@ -1,6 +1,7 @@
 var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
 var Reflux = require('reflux');
 var React = require('react');
+var React = require('react-dom');
 
 var _timerClick;
 var _canClear = true;
@@ -16,7 +17,7 @@ var TextAreaSelectionMixin = {
 
     bindSelectEvent: function() {
         if (this.refs.editor != null) {
-            this.textAreaElem = React.findDOMNode(this.refs.editor);
+            this.textAreaElem = this.refs.editor;
             this.textAreaElem.addEventListener("select", this.onSelectHandler);
         }
     },
@@ -52,7 +53,7 @@ var TextAreaSelectionMixin = {
             selectionEnd: _selectionEnd,
             selectedText: _selectedText
         }
-        
+
         MarkdownEditorActions.setSelection(selection);
         this._preventClearSelectionAfterSelectIfNeeded(e);
     },

@@ -1,8 +1,9 @@
 /** @jsx React.DOM */
 
-var React = require('react/addons');
+var React = require('react');
+var ReactDOM = require('react-dom');
 var Reflux = require('reflux');
-var Markdown = require( "markdown" ).markdown;
+var Markdown = require('markdown').markdown;
 var MarkdownEditorActions = require('./actions/MarkdownEditorActions');
 var PublicMarkdownEditorActions = require('./actions/PublicMarkdownEditorActions');
 var MarkdownSelectionActions = require('./actions/MarkdownSelectionActions');
@@ -23,7 +24,7 @@ var ImageMarkdownToken = MarkdownTokenFactory.ImageMarkdownToken;
 
 var MarkdownEditorMenu = React.createClass({
     mixins: [Reflux.ListenerMixin],
-    
+
     getInitialState: function() {
         return {
             enabled: false
@@ -171,16 +172,20 @@ var MarkdownEditorContent = React.createClass({
             "border": "none"
         };
 
-        return  <textarea ref="editor" className="md-editor-textarea" 
-                          style={styleMarkdownTextArea}
-                          onChange={this.onChange}
-                          onClick={this.clearSelection}
-                          onKeyUp={this.clearSelection}>
-                </textarea>
+        return  (
+            <textarea
+              ref="editor"
+              className="md-editor-textarea"
+              style={styleMarkdownTextArea}
+              onChange={this.onChange}
+              onClick={this.clearSelection}
+              onKeyUp={this.clearSelection}>
+            </textarea>
+        );
     },
 
     onChange: function() {
-        var content = React.findDOMNode(this.refs.editor).value;
+        var content = this.refs.editor.value;
         var markdownContent = MarkdownUtils.toMarkdown(content);
         PublicMarkdownEditorActions.updateText(markdownContent);
 
@@ -188,11 +193,11 @@ var MarkdownEditorContent = React.createClass({
     },
 
     componentDidMount: function() {
-        React.findDOMNode(this.refs.editor).value = this.props.content;
+        this.refs.editor.value = this.props.content;
     },
 
     componentDidUpdate: function() {
-        React.findDOMNode(this.refs.editor).value = this.props.content;  
+        this.refs.editor.value = this.props.content;
     }
 });
 
@@ -214,9 +219,11 @@ var MarkdownEditorPreview = React.createClass({
             "border": "none",
         };
 
-        return  <div style={styleMarkdownPreviewArea}
-                     dangerouslySetInnerHTML={{__html: htmlContent}}
-                />;
+        return  (
+            <div style={styleMarkdownPreviewArea}
+                 dangerouslySetInnerHTML={{__html: htmlContent}}
+            />
+        );
     }
 });
 
@@ -234,7 +241,7 @@ var MarkdownEditor = React.createClass({
     render: function() {
         var divContent;
         var editorMenu;
-        
+
         if (this.state.inEditMode) {
             divContent = <MarkdownEditorContent content={this.state.content} onChangeHandler={this.onChangeHandler}/>;
             editorMenu = <MarkdownEditorMenu />
@@ -256,13 +263,15 @@ var MarkdownEditor = React.createClass({
           "backgroundColor": "#f7f7f7"
         }
 
-        return <div style={styleMarkdownEditorContainer}>
+        return (
+                <div style={styleMarkdownEditorContainer}>
                     <div style={styleMarkdownEditorHeader} className="row md-editor-header">
                         {editorMenu}
                         <MarkdownEditorTabs />
                     </div>
                     {divContent}
                 </div>
+            );
     },
 
     onChangeHandler: function(newContent) {
@@ -304,35 +313,27 @@ var MarkdownEditor = React.createClass({
         switch (actionType) {
             case "bold":
                 return new RegularMarkdownToken("**", true);
-                break;
 
             case "italic":
                 return new RegularMarkdownToken("_", true);
-                break;
 
             case "header":
                 return new HeaderMarkdownToken();
-                break;
 
             case "subheader":
                 return new SubHeaderMarkdownToken();
-                break;
 
             case "link":
                 return new UrlMarkdownToken();
-                break;
 
             case "list":
                 return new ListMarkdownToken();
-                break;
 
             case "image":
                 return new ImageMarkdownToken();
-                break;
 
             default:
                 return new NullMarkdownToken();
-                break;
         }
     }
 });
