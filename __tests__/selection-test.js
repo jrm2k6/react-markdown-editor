@@ -4,8 +4,9 @@ jest.dontMock('../src/MarkdownEditor.js');
 jest.dontMock('../src/stores/MarkdownEditorStore.js');
 jest.dontMock('../src/mixins/TextAreaSelectionMixin.js');
 
-var React = require('react/addons');
-var TestUtils = React.addons.TestUtils;
+var React = require('react');
+var ReactDOM = require('react-dom');
+var TestUtils = require('react-addons-test-utils');
 var MarkdownEditor = require('../src/MarkdownEditor.js');
 var MarkdownEditorStore = require('../src/stores/MarkdownEditorStore.js');
 var MarkdownSelectionActions = require('../src/actions/MarkdownSelectionActions.js');
@@ -21,6 +22,7 @@ xdescribe('text selection when editing', function() {
     it('should set selection through action after selecting', function() {
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
+        var textareaNode = ReactDOM.findDOMNode(textarea);
         var _e = {
             srcElement: {
                 selectionStart: 5,
@@ -30,7 +32,7 @@ xdescribe('text selection when editing', function() {
         };
 
         // when
-        TestUtils.Simulate.select(textarea.getDOMNode(), _e);
+        TestUtils.Simulate.select(textareaNode, _e);
 
         // then
         var param = {
@@ -38,22 +40,22 @@ xdescribe('text selection when editing', function() {
             selectionEnd: 10,
             selectionStart: 5
         };
-        
+
         expect(MarkdownEditorActions.setSelection).toBeCalledWith(param);
     });
 });
 
 describe('clicking when editing', function() {
     it('should clear selection after clicking', function() {
-        //given 
+        //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
+        var textareaNode = ReactDOM.findDOMNode(textarea);
 
         // when
-        TestUtils.Simulate.click(textarea.getDOMNode());
+        TestUtils.Simulate.click(textareaNode);
 
         // then
         expect(MarkdownEditorActions.clearSelection).toBeCalled();
     });
 });
-

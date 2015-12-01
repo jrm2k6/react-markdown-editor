@@ -7,8 +7,8 @@ jest.dontMock('../src/actions/MarkdownEditorActions.js');
 jest.dontMock('../src/actions/MarkdownSelectionActions.js');
 jest.dontMock('../src/mixins/TextAreaSelectionMixin.js');
 
-var React = require('react/addons');
-var TestUtils = React.addons.TestUtils;
+var React = require('react');
+var TestUtils = require('react-addons-test-utils');
 var MarkdownEditor = require('../src/MarkdownEditor.js');
 var MarkdownSelectionStore = require('../src/stores/MarkdownSelectionStore.js');
 var MarkdownSelectionActions = require('../src/actions/MarkdownSelectionActions.js');
@@ -23,7 +23,7 @@ describe('menu buttons state', function() {
         // given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
-        
+
         // then
         btns.forEach(function(btn) {
             expect(btn.props.disabled).toEqual('disabled');
@@ -35,11 +35,11 @@ describe('menu buttons state', function() {
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
-        
+
         // when
         MarkdownSelectionActions.selectionSet();
         jest.runAllTimers();
-        
+
         // then
         btns.forEach(function(btn) {
             expect(btns[0].props.disabled).toEqual('');
@@ -51,13 +51,13 @@ describe('menu buttons state', function() {
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
-        
+
         // when
         MarkdownSelectionActions.selectionSet();
         jest.runAllTimers();
         MarkdownSelectionActions.selectionCleared();
         jest.runAllTimers();
-        
+
         // then
         btns.forEach(function(btn) {
             expect(btns[0].props.disabled).toEqual('disabled');

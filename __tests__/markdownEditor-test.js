@@ -2,8 +2,9 @@
 
 jest.dontMock('../src/MarkdownEditor.js');
 
-var React = require('react/addons');
-var TestUtils = React.addons.TestUtils;
+var React = require('react');
+var ReactDOM = require('react-dom');
+var TestUtils = require('react-addons-test-utils');
 var MarkdownEditor = require('../src/MarkdownEditor.js');
 var MarkdownEditorActions = require('../src/actions/MarkdownEditorActions.js');
 var PublicMarkdownEditorActions = require('../src/actions/PublicMarkdownEditorActions.js');
@@ -18,14 +19,14 @@ describe('creates markdown editor', function() {
     it('creates markdown editor element composed of two divs', function() {
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
 
-        expect(editor.getDOMNode().children.length).toEqual(2);
+        expect(ReactDOM.findDOMNode(editor).children.length).toEqual(2);
     });
-    
+
     it('markdown editor header is composed of two divs in edit mode', function() {
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
 
         var menuElements = TestUtils.scryRenderedDOMComponentsWithClass(editor, 'md-editor-header');
-        
+
         expect(menuElements.length).toEqual(1);
         var children = menuElements[0].props.children;
         expect(children.length).toEqual(2);
@@ -53,38 +54,38 @@ describe('creates markdown editor', function() {
 
     it('markdown editor content is edit mode by default and displays a text area', function() {
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
-        var secondChild = editor.getDOMNode().children[1];
-        
+        var secondChild = ReactDOM.findDOMNode(editor).children[1];
+
         expect(secondChild.type).toEqual('textarea');
     });
 
     it('markdown editor content displays initial content on creation', function() {
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var editorTextArea = TestUtils.findRenderedDOMComponentWithTag(editor, 'textarea');
-        expect(editorTextArea.getDOMNode().textContent).toEqual('initialContent');
+        expect(ReactDOM.findDOMNode(editorTextArea).value).toEqual('initialContent');
     });
 });
 
 describe('toggle preview mode', function() {
     it('clicking on preview tab changes mode', function() {
-        //given 
+        //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var previewTab = TestUtils.scryRenderedDOMComponentsWithClass(editor, 'md-editor-tabs-item')[1];
-        
+        var previewTabNode = ReactDOM.findDOMNode(previewTab)
         // when
-        TestUtils.Simulate.click(previewTab.getDOMNode());
+        TestUtils.Simulate.click(previewTabNode);
 
         // then
         expect(MarkdownEditorActions.clickPreviewTab).toBeCalled();
     });
 
     it('clicking on editor tab changes mode', function() {
-        //given 
+        //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var editorTab = TestUtils.scryRenderedDOMComponentsWithClass(editor, 'md-editor-tabs-item')[0];
-        
+        var editorTabNode = ReactDOM.findDOMNode(editorTab);
         // when
-        TestUtils.Simulate.click(editorTab.getDOMNode());
+        TestUtils.Simulate.click(editorTabNode);
 
         // then
         expect(MarkdownEditorActions.clickEditorTab).toBeCalled();
@@ -103,86 +104,91 @@ describe('menu button interactions', function() {
     });
 
     it('clicking on bold button dispatches action', function() {
-        //given 
+        //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-bold');
-        
+        var btnNode = ReactDOM.findDOMNode(btn);
+
         // when
-        TestUtils.Simulate.click(btn.getDOMNode());
+        TestUtils.Simulate.click(btnNode);
 
         // then
         expect(MarkdownEditorActions.makeBold).toBeCalled();
     });
 
     it('clicking on italic button dispatches action', function() {
-        //given 
+        //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-italic');
-        
+        var btnNode = ReactDOM.findDOMNode(btn);
+
         // when
-        TestUtils.Simulate.click(btn.getDOMNode());
+        TestUtils.Simulate.click(btnNode);
 
         // then
         expect(MarkdownEditorActions.makeItalic).toBeCalled();
     });
 
     it('clicking on header button dispatches action', function() {
-        //given 
+        //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-menu-header');
-        
+        var btnNode = ReactDOM.findDOMNode(btn);
+
         // when
-        TestUtils.Simulate.click(btn.getDOMNode());
+        TestUtils.Simulate.click(btnNode);
 
         // then
         expect(MarkdownEditorActions.makeHeader).toBeCalled();
     });
 
     it('clicking on subheader button dispatches action', function() {
-        //given 
+        //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-menu-subheader');
-        
+        var btnNode = ReactDOM.findDOMNode(btn);
+
         // when
-        TestUtils.Simulate.click(btn.getDOMNode());
+        TestUtils.Simulate.click(btnNode);
 
         // then
         expect(MarkdownEditorActions.makeSubHeader).toBeCalled();
     });
 
     it('clicking on list button dispatches action', function() {
-        //given 
+        //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-list-ul');
-        
+        var btnNode = ReactDOM.findDOMNode(btn);
+
         // when
-        TestUtils.Simulate.click(btn.getDOMNode());
+        TestUtils.Simulate.click(btnNode);
 
         // then
         expect(MarkdownEditorActions.makeList).toBeCalled();
     });
 
     it('clicking on image button dispatches action', function() {
-        //given 
+        //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-file-image-o');
-        
+        var btnNode = ReactDOM.findDOMNode(btn);
+
         // when
-        TestUtils.Simulate.click(btn.getDOMNode());
+        TestUtils.Simulate.click(btnNode);
 
         // then
         expect(MarkdownEditorActions.makeImage).toBeCalled();
     });
 
     it('clicking on link button dispatches action', function() {
-        //given 
+        //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-link');
-        
-        // when
-        TestUtils.Simulate.click(btn.getDOMNode());
+        var btnNode = ReactDOM.findDOMNode(btn);
 
-        // then
+        // when
+        TestUtils.Simulate.click(btnNode);
         expect(MarkdownEditorActions.makeLink).toBeCalled();
     });
 });
@@ -193,15 +199,15 @@ describe('textarea changes behavior', function() {
     });
 
     it('verify typing dispatches an action', function() {
-        //given 
+        //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
-        
+        var textareaNode = ReactDOM.findDOMNode(textarea);
+
         // when
-        TestUtils.Simulate.change(textarea.getDOMNode(), "markdownContent");
+        TestUtils.Simulate.change(textareaNode, "markdownContent");
 
         // then
         expect(PublicMarkdownEditorActions.updateText).toBeCalled();
     });
 });
-
