@@ -7,6 +7,9 @@ addons:
   code_climate:
     repo_token: c431e390
 
+before_script:
+  - npm install react react-dom
+
 after_script:
   - codeclimate < coverage/lcov.info
 
