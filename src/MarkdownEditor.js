@@ -8,6 +8,7 @@ var MarkdownEditorActions = require('./actions/MarkdownEditorActions');
 var PublicMarkdownEditorActions = require('./actions/PublicMarkdownEditorActions');
 var MarkdownSelectionActions = require('./actions/MarkdownSelectionActions');
 var TextAreaSelectionMixin = require('./mixins/TextAreaSelectionMixin');
+var ButtonManagerMixin = require('./mixins/ButtonManagerMixin');
 var MarkdownEditorStore = require('./stores/MarkdownEditorStore');
 var MarkdownSelectionStore = require('./stores/MarkdownSelectionStore');
 var MarkdownEditorTabsInteractionStore = require('./stores/MarkdownEditorTabsInteractionStore');
@@ -23,7 +24,11 @@ var ListMarkdownToken = MarkdownTokenFactory.ListMarkdownToken;
 var ImageMarkdownToken = MarkdownTokenFactory.ImageMarkdownToken;
 
 var MarkdownEditorMenu = React.createClass({
-    mixins: [Reflux.ListenerMixin],
+    mixins: [Reflux.ListenerMixin, ButtonManagerMixin],
+
+    propTypes : {
+        iconsSet: React.PropTypes.string.isRequired
+    },
 
     getInitialState: function() {
         return {
@@ -33,6 +38,7 @@ var MarkdownEditorMenu = React.createClass({
 
     componentWillMount: function() {
         this.listenTo(MarkdownSelectionStore, this.handleMarkdownSelectionStore);
+        this.setIconsProvider(this.props.iconsSet);
     },
 
     render: function() {
@@ -231,7 +237,8 @@ var MarkdownEditor = React.createClass({
     mixins: [Reflux.ListenerMixin],
 
     propTypes: {
-        initialContent: React.PropTypes.string.isRequired
+        initialContent: React.PropTypes.string.isRequired,
+        iconsSet: React.PropTypes.oneOf(['font-awesome', 'materialize-ui']).isRequired
     },
 
     getInitialState: function() {
@@ -244,7 +251,7 @@ var MarkdownEditor = React.createClass({
 
         if (this.state.inEditMode) {
             divContent = <MarkdownEditorContent content={this.state.content} onChangeHandler={this.onChangeHandler}/>;
-            editorMenu = <MarkdownEditorMenu />
+            editorMenu = <MarkdownEditorMenu iconsSet={this.props.iconsSet}/>
         } else {
             divContent = <MarkdownEditorPreview content={this.state.content} />;
             editorMenu = null;
