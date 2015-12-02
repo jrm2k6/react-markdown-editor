@@ -67,6 +67,9 @@ open index.html
 ## Issues/Contribution
 You can open an issue on the github repo, or contact me directly by email.
 
+## Help
+Please, if you are using this package, let me know. I am interested to know what you think of it, even if it was on a tiny side-project.
+
 ## Screenshots
 ![Editing tab](http://i.imgur.com/XPdJmqm.png "Editing tab")
 ![Preview tab](http://i.imgur.com/uavBSUN.png "Preview tab")
