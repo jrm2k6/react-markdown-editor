@@ -53,6 +53,7 @@ You can modify the styles directly by modifying the styles declared in ```dist/M
 ## TODO
 - [ ] Better solution for styles
 - [ ] Cross-browsers testing
+- [ ] Move to Redux
 
 ## Example
 
