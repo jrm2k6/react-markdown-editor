@@ -17,13 +17,13 @@ afterEach(function() {
 
 describe('creates markdown editor', function() {
     it('creates markdown editor element composed of two divs', function() {
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
 
         expect(ReactDOM.findDOMNode(editor).children.length).toEqual(2);
     });
 
     it('markdown editor header is composed of two divs in edit mode', function() {
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
 
         var menuElements = TestUtils.scryRenderedDOMComponentsWithClass(editor, 'md-editor-header');
 
@@ -35,14 +35,14 @@ describe('creates markdown editor', function() {
     });
 
     it('markdown editor menu has 7 buttons', function() {
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
 
         var editorMenu = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-menu');
         expect(editorMenu.props.children.length).toEqual(7);
     });
 
     it('markdown editor tabs element has 2 tabs', function() {
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
 
         var editorTabs = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-tabs');
         var ulElement = editorTabs.props.children;
@@ -53,14 +53,14 @@ describe('creates markdown editor', function() {
     });
 
     it('markdown editor content is edit mode by default and displays a text area', function() {
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var secondChild = ReactDOM.findDOMNode(editor).children[1];
 
         expect(secondChild.type).toEqual('textarea');
     });
 
     it('markdown editor content displays initial content on creation', function() {
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var editorTextArea = TestUtils.findRenderedDOMComponentWithTag(editor, 'textarea');
         expect(ReactDOM.findDOMNode(editorTextArea).value).toEqual('initialContent');
     });
@@ -69,7 +69,7 @@ describe('creates markdown editor', function() {
 describe('toggle preview mode', function() {
     it('clicking on preview tab changes mode', function() {
         //given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var previewTab = TestUtils.scryRenderedDOMComponentsWithClass(editor, 'md-editor-tabs-item')[1];
         var previewTabNode = ReactDOM.findDOMNode(previewTab)
         // when
@@ -81,7 +81,7 @@ describe('toggle preview mode', function() {
 
     it('clicking on editor tab changes mode', function() {
         //given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var editorTab = TestUtils.scryRenderedDOMComponentsWithClass(editor, 'md-editor-tabs-item')[0];
         var editorTabNode = ReactDOM.findDOMNode(editorTab);
         // when
@@ -105,7 +105,7 @@ describe('menu button interactions', function() {
 
     it('clicking on bold button dispatches action', function() {
         //given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-bold');
         var btnNode = ReactDOM.findDOMNode(btn);
 
@@ -118,7 +118,7 @@ describe('menu button interactions', function() {
 
     it('clicking on italic button dispatches action', function() {
         //given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-italic');
         var btnNode = ReactDOM.findDOMNode(btn);
 
@@ -131,7 +131,7 @@ describe('menu button interactions', function() {
 
     it('clicking on header button dispatches action', function() {
         //given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-menu-header');
         var btnNode = ReactDOM.findDOMNode(btn);
 
@@ -144,7 +144,7 @@ describe('menu button interactions', function() {
 
     it('clicking on subheader button dispatches action', function() {
         //given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-menu-subheader');
         var btnNode = ReactDOM.findDOMNode(btn);
 
@@ -157,7 +157,7 @@ describe('menu button interactions', function() {
 
     it('clicking on list button dispatches action', function() {
         //given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-list-ul');
         var btnNode = ReactDOM.findDOMNode(btn);
 
@@ -170,7 +170,7 @@ describe('menu button interactions', function() {
 
     it('clicking on image button dispatches action', function() {
         //given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-file-image-o');
         var btnNode = ReactDOM.findDOMNode(btn);
 
@@ -183,7 +183,7 @@ describe('menu button interactions', function() {
 
     it('clicking on link button dispatches action', function() {
         //given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-link');
         var btnNode = ReactDOM.findDOMNode(btn);
 
@@ -200,7 +200,7 @@ describe('textarea changes behavior', function() {
 
     it('verify typing dispatches an action', function() {
         //given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var textareaNode = ReactDOM.findDOMNode(textarea);
 

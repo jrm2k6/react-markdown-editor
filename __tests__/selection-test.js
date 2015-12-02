@@ -20,7 +20,7 @@ afterEach(function() {
 
 xdescribe('text selection when editing', function() {
     it('should set selection through action after selecting', function() {
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var textareaNode = ReactDOM.findDOMNode(textarea);
         var _e = {
@@ -48,7 +48,7 @@ xdescribe('text selection when editing', function() {
 describe('clicking when editing', function() {
     it('should clear selection after clicking', function() {
         //given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var textareaNode = ReactDOM.findDOMNode(textarea);
 

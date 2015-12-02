@@ -21,7 +21,7 @@ describe('menu buttons state', function() {
 
     it('buttons should be disabled when creating the editor', function() {
         // given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
 
         // then
@@ -32,7 +32,7 @@ describe('menu buttons state', function() {
 
     it('buttons should be enabled when selection occurred the editor', function() {
         // given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
 
@@ -48,7 +48,7 @@ describe('menu buttons state', function() {
 
     it('buttons should be enabled when selection occurred the editor', function() {
         // given
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
 
