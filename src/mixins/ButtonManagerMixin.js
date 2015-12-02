@@ -33,8 +33,8 @@ var ButtonManagerMixin = {
     },
 
     getLinkButton: function() {
-      
+
     }
 }
 
-module.exports = CSSIconsProviderMixin;
+module.exports = ButtonManagerMixin;
