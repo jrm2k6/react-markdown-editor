@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-jsx --no-cache-dir  src dist
+jsx --no-cache-dir src dist
