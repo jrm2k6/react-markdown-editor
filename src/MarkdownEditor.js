@@ -59,16 +59,23 @@ var MarkdownEditorMenu = React.createClass({
         }
 
         var _disabled = (!this.state.enabled) ? "disabled" : "";
+        var boldButton = this.getBoldButton(_disabled, this.handleBoldButtonClick);
+        var italicButton = this.getItalicButton(_disabled, this.handleItalicButtonClick);
+        var makeListButton = this.getMakeListButton(_disabled, this.handleListButtonClick);
+        var imageButton = this.getImageButton(_disabled, this.handleImageButtonClick);
+        var linkButton = this.getLinkButton(_disabled, this.handleLinkButtonClick);
+        var headerButton = this.getButtonWithoutIcon(_disabled, this.handleHeaderButtonClick, styleMarkdownBtn, "md-editor-menu-header", "Header");
+        var subHeaderButton = this.getButtonWithoutIcon(_disabled, this.handleSubHeaderButtonClick, styleMarkdownBtn, "md-editor-menu-subheader", "Subheader");
 
         return (
             <div style={styleMarkdownMenu} className="col-md-6 pull-right md-editor-menu">
-                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa fa-bold" onClick={this.handleBoldButtonClick}></div>
-                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa fa-italic" onClick={this.handleItalicButtonClick}></div>
-                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa md-editor-menu-header" onClick={this.handleHeaderButtonClick}>Header</div>
-                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa md-editor-menu-subheader" onClick={this.handleSubHeaderButtonClick}>Subheader</div>
-                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa fa-list-ul" onClick={this.handleListButtonClick}></div>
-                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa fa-file-image-o" onClick={this.handleImageButtonClick}></div>
-                <div role="button" style={styleMarkdownBtn} disabled={_disabled} className="btn fa fa-link" onClick={this.handleLinkButtonClick}></div>
+                {boldButton}
+                {italicButton}
+                {headerButton}
+                {subHeaderButton}
+                {makeListButton}
+                {imageButton}
+                {linkButton}
            </div>
         );
     },
