@@ -31,8 +31,17 @@ var ButtonManagerMixin = {
         var _style = this.getStyleMarkdownBtn();
         return this.getButtonFontAwesomeIcon(isDisabled, onClickHandler, _style, 'fa-bold');
       } else {
-        return null;
+        var _style = this.getStyleMarkdownBtn();
+        return this.getButtonMaterializeIcon(isDisabled, onClickHandler, _style, 'format_bold');
       }
+    },
+
+    getButtonMaterializeIcon: function(isDisabled, onClickHandler, styleBtn, iconName) {
+      return (
+        <div role="button" style={styleBtn} disabled={isDisabled} onClick={onClickHandler}>
+          <i className="material-icons">{iconName}</i>
+        </div>
+      );
     },
 
     getButtonFontAwesomeIcon: function(isDisabled, onClickHandler, styleBtn, iconName) {
@@ -55,7 +64,8 @@ var ButtonManagerMixin = {
         var _style = this.getStyleMarkdownBtn();
         return this.getButtonFontAwesomeIcon(isDisabled, onClickHandler, _style, 'fa-italic');
       } else {
-        return null;
+        var _style = this.getStyleMarkdownBtn();
+        return this.getButtonMaterializeIcon(isDisabled, onClickHandler, _style, 'format_italic');
       }
     },
 
@@ -72,7 +82,8 @@ var ButtonManagerMixin = {
         var _style = this.getStyleMarkdownBtn();
         return this.getButtonFontAwesomeIcon(isDisabled, onClickHandler, _style, 'fa-list-ul');
       } else {
-        return null;
+        var _style = this.getStyleMarkdownBtn();
+        return this.getButtonMaterializeIcon(isDisabled, onClickHandler, _style, 'format_list_bulleted');
       }
     },
 
@@ -81,7 +92,8 @@ var ButtonManagerMixin = {
         var _style = this.getStyleMarkdownBtn();
         return this.getButtonFontAwesomeIcon(isDisabled, onClickHandler, _style, 'fa-file-image-o');
       } else {
-        return null;
+        var _style = this.getStyleMarkdownBtn();
+        return this.getButtonMaterializeIcon(isDisabled, onClickHandler, _style, 'insert_photo');
       }
     },
 
@@ -90,7 +102,8 @@ var ButtonManagerMixin = {
         var _style = this.getStyleMarkdownBtn();
         return this.getButtonFontAwesomeIcon(isDisabled, onClickHandler, _style, 'fa-link');
       } else {
-        return null;
+        var _style = this.getStyleMarkdownBtn();
+        return this.getButtonMaterializeIcon(isDisabled, onClickHandler, _style, 'insert_link');
       }
     }
 }
