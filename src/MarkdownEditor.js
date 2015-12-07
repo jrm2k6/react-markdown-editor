@@ -154,27 +154,46 @@ var MarkdownEditorTabs = React.createClass({
 
         var styleTab = {
             "padding": "0px 20px",
-            "cursor": "pointer"
+            "cursor": "pointer",
+            "display": "flex",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "height": "50px"
         };
 
-        var tabClassName = "md-editor-tabs-item";
-        var editorTabClassName = tabClassName;
-        var previewTabClassName = tabClassName;
+        var styleActiveTab = {
+            "padding": "0px 20px",
+            "cursor": "pointer",
+            "display": "flex",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "height": "50px",
+            "borderLeft": "1px solid #ddd",
+            "borderRight": "1px solid #ddd",
+            "borderTop": "1px solid #ddd",
+            "backgroundColor": "#fff",
+            "borderRadius": "3px"
+        };
+
+        var editorTabStyle;
+        var previewTabStyle;
         if (this.state.activeTab === 0) {
-            editorTabClassName += " active";
+            editorTabStyle = styleActiveTab;
+            previewTabStyle = styleTab;
         } else if (this.state.activeTab === 1) {
-            previewTabClassName += " active";
+            previewTabStyle = styleActiveTab;
+            editorTabStyle = styleTab;
         }
 
         return (
             <div style={styleMarkdownEditorTabs} className="md-editor-tabs">
-                <div style={styleTab} className={editorTabClassName}
+                <div style={editorTabStyle}
                      onClick={this.handleClick.bind(this, "clickEditorTab")}>
-                  Editor
+                  <span>Editor</span>
                 </div>
-                <div style={styleTab} className={previewTabClassName}
+                <div style={previewTabStyle}
                      onClick={this.handleClick.bind(this, "clickPreviewTab")}>
-                  Preview
+                  <span>Preview</span>
                 </div>
             </div>
         );
