@@ -42,21 +42,14 @@ var MarkdownEditorMenu = React.createClass({
     },
 
     render: function() {
-        var styleMarkdownBtn = {
-            "minWidth": "50px",
-            "height": "20px",
-            "border": "1px solid #ddd",
-            "backgroundColor": "white",
-            "borderRadius": "4px",
-            "margin": "0 2px",
-            "padding": "2px 3px",
-            "cursor": "pointer",
-            "textAlign": "center"
-        };
-
         var styleMarkdownMenu = {
-            "margin": "5px 0"
-        }
+            "margin": "5px 0",
+            "flex": "1",
+            "display": "flex",
+            "position": "absolute",
+            "right": "20px",
+            "top": "10px"
+        };
 
         var _disabled = (!this.state.enabled) ? "disabled" : "";
         var boldButton = this.getBoldButton(_disabled, this.handleBoldButtonClick);
@@ -64,11 +57,11 @@ var MarkdownEditorMenu = React.createClass({
         var makeListButton = this.getMakeListButton(_disabled, this.handleListButtonClick);
         var imageButton = this.getImageButton(_disabled, this.handleImageButtonClick);
         var linkButton = this.getLinkButton(_disabled, this.handleLinkButtonClick);
-        var headerButton = this.getButtonWithoutIcon(_disabled, this.handleHeaderButtonClick, styleMarkdownBtn, "md-editor-menu-header", "Header");
-        var subHeaderButton = this.getButtonWithoutIcon(_disabled, this.handleSubHeaderButtonClick, styleMarkdownBtn, "md-editor-menu-subheader", "Subheader");
+        var headerButton = this.getButtonWithoutIcon(_disabled, this.handleHeaderButtonClick, "md-editor-menu-header", "Header");
+        var subHeaderButton = this.getButtonWithoutIcon(_disabled, this.handleSubHeaderButtonClick, "md-editor-menu-subheader", "Subheader");
 
         return (
-            <div style={styleMarkdownMenu} className="col-md-6 pull-right md-editor-menu">
+            <div style={styleMarkdownMenu} className="md-editor-menu">
                 {boldButton}
                 {italicButton}
                 {headerButton}
@@ -140,26 +133,54 @@ var MarkdownEditorTabs = React.createClass({
 
     render: function() {
         var styleMarkdownEditorTabs = {
-            "border": "none"
+            "border": "none",
+            "display": "flex",
+            "justifyContent": "flex-start"
         };
 
-        var tabClassName = "md-editor-tabs-item";
-        var editorTabClassName = tabClassName;
-        var previewTabClassName = tabClassName;
+        var styleTab = {
+            "padding": "0px 20px",
+            "cursor": "pointer",
+            "display": "flex",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "height": "50px"
+        };
+
+        var styleActiveTab = {
+            "padding": "0px 20px",
+            "cursor": "pointer",
+            "display": "flex",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "height": "50px",
+            "borderLeft": "1px solid #ddd",
+            "borderRight": "1px solid #ddd",
+            "borderTop": "1px solid #ddd",
+            "backgroundColor": "#fff",
+            "borderRadius": "3px"
+        };
+
+        var editorTabStyle;
+        var previewTabStyle;
         if (this.state.activeTab === 0) {
-            editorTabClassName += " active";
+            editorTabStyle = styleActiveTab;
+            previewTabStyle = styleTab;
         } else if (this.state.activeTab === 1) {
-            previewTabClassName += " active";
+            previewTabStyle = styleActiveTab;
+            editorTabStyle = styleTab;
         }
 
         return (
-            <div className="col-md-4 md-editor-tabs">
-                <ul style={styleMarkdownEditorTabs} className="nav nav-tabs">
-                    <li className={editorTabClassName}
-                        onClick={this.handleClick.bind(this, "clickEditorTab")}><a>Editor</a></li>
-                    <li className={previewTabClassName}
-                        onClick={this.handleClick.bind(this, "clickPreviewTab")}><a>Preview</a></li>
-                </ul>
+            <div style={styleMarkdownEditorTabs} className="md-editor-tabs">
+                <div style={editorTabStyle}
+                     onClick={this.handleClick.bind(this, "clickEditorTab")}>
+                  <span>Editor</span>
+                </div>
+                <div style={previewTabStyle}
+                     onClick={this.handleClick.bind(this, "clickPreviewTab")}>
+                  <span>Preview</span>
+                </div>
             </div>
         );
     },
@@ -265,21 +286,28 @@ var MarkdownEditor = React.createClass({
         }
 
         var styleMarkdownEditorHeader = {
+          "display": "flex",
+          "flexDirection": "column",
           "borderBottom": "1px solid #ddd",
           "marginLeft": "0px",
-          "marginRight": "0px"
-        }
+          "marginRight": "0px",
+          "minHeight": "50px",
+          "justifyContent": "center",
+          "position": "relative"
+        };
 
         var styleMarkdownEditorContainer = {
+          "display": "flex",
+          "flexDirection": "column",
           "marginTop": "2px",
           "paddingTop" : "10px",
           "border": "1px solid #ddd",
-          "backgroundColor": "#f7f7f7"
-        }
+          "backgroundColor": "#f7f7f7",
+        };
 
         return (
                 <div style={styleMarkdownEditorContainer}>
-                    <div style={styleMarkdownEditorHeader} className="row md-editor-header">
+                    <div style={styleMarkdownEditorHeader} className="md-editor-header">
                         {editorMenu}
                         <MarkdownEditorTabs />
                     </div>
