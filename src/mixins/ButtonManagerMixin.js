@@ -48,9 +48,11 @@ var ButtonManagerMixin = {
     },
 
     getButtonFontAwesomeIcon: function(isDisabled, onClickHandler, styleBtn, iconName) {
-      var _className = "btn fa " + iconName;
+      var _className = "fa " + iconName;
       return (
-        <div role="button" style={styleBtn} disabled={isDisabled} className={_className} onClick={onClickHandler}></div>
+        <div role="button" style={styleBtn} disabled={isDisabled} onClick={onClickHandler}>
+          <i className={_className}></i>
+        </div>
       );
     },
 
