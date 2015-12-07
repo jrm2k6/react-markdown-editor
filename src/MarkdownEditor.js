@@ -42,20 +42,6 @@ var MarkdownEditorMenu = React.createClass({
     },
 
     render: function() {
-        var styleMarkdownBtn = {
-            "display": "flex",
-            "minWidth": "50px",
-            "height": "20px",
-            "border": "1px solid #ddd",
-            "backgroundColor": "white",
-            "borderRadius": "4px",
-            "margin": "0 2px",
-            "padding": "2px 3px",
-            "cursor": "pointer",
-            "textAlign": "center",
-            "justifyContent": "flex-end"
-        };
-
         var styleMarkdownMenu = {
             "margin": "5px 0",
             "flex": "1",
@@ -71,8 +57,8 @@ var MarkdownEditorMenu = React.createClass({
         var makeListButton = this.getMakeListButton(_disabled, this.handleListButtonClick);
         var imageButton = this.getImageButton(_disabled, this.handleImageButtonClick);
         var linkButton = this.getLinkButton(_disabled, this.handleLinkButtonClick);
-        var headerButton = this.getButtonWithoutIcon(_disabled, this.handleHeaderButtonClick, styleMarkdownBtn, "md-editor-menu-header", "Header");
-        var subHeaderButton = this.getButtonWithoutIcon(_disabled, this.handleSubHeaderButtonClick, styleMarkdownBtn, "md-editor-menu-subheader", "Subheader");
+        var headerButton = this.getButtonWithoutIcon(_disabled, this.handleHeaderButtonClick, "md-editor-menu-header", "Header");
+        var subHeaderButton = this.getButtonWithoutIcon(_disabled, this.handleSubHeaderButtonClick, "md-editor-menu-subheader", "Subheader");
 
         return (
             <div style={styleMarkdownMenu} className="md-editor-menu">
