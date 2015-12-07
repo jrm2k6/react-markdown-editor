@@ -16,16 +16,15 @@ var ButtonManagerMixin = {
       return {
         "flex": "1",
         "maxWidth": "50px",
-        "height": "20px",
         "border": "1px solid #ddd",
         "backgroundColor": "white",
         "borderRadius": "4px",
         "margin": "0 2px",
         "padding": "2px 3px",
         "cursor": "pointer",
-        "textAlign": "center",
+        "display": "flex",
         "justifyContent": "center",
-        "alignItems": "flex-end"
+        "alignItems": "center"
       };
     },
 
