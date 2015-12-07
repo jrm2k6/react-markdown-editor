@@ -43,6 +43,7 @@ var MarkdownEditorMenu = React.createClass({
 
     render: function() {
         var styleMarkdownBtn = {
+            "display": "flex",
             "minWidth": "50px",
             "height": "20px",
             "border": "1px solid #ddd",
@@ -51,12 +52,18 @@ var MarkdownEditorMenu = React.createClass({
             "margin": "0 2px",
             "padding": "2px 3px",
             "cursor": "pointer",
-            "textAlign": "center"
+            "textAlign": "center",
+            "justifyContent": "flex-end"
         };
 
         var styleMarkdownMenu = {
-            "margin": "5px 0"
-        }
+            "margin": "5px 0",
+            "flex": "1",
+            "display": "flex",
+            "position": "absolute",
+            "right": "20px",
+            "top": "10px"
+        };
 
         var _disabled = (!this.state.enabled) ? "disabled" : "";
         var boldButton = this.getBoldButton(_disabled, this.handleBoldButtonClick);
@@ -68,7 +75,7 @@ var MarkdownEditorMenu = React.createClass({
         var subHeaderButton = this.getButtonWithoutIcon(_disabled, this.handleSubHeaderButtonClick, styleMarkdownBtn, "md-editor-menu-subheader", "Subheader");
 
         return (
-            <div style={styleMarkdownMenu} className="col-md-6 pull-right md-editor-menu">
+            <div style={styleMarkdownMenu} className="md-editor-menu">
                 {boldButton}
                 {italicButton}
                 {headerButton}
@@ -140,7 +147,14 @@ var MarkdownEditorTabs = React.createClass({
 
     render: function() {
         var styleMarkdownEditorTabs = {
-            "border": "none"
+            "border": "none",
+            "display": "flex",
+            "justifyContent": "flex-start"
+        };
+
+        var styleTab = {
+            "padding": "0px 20px",
+            "cursor": "pointer"
         };
 
         var tabClassName = "md-editor-tabs-item";
@@ -153,13 +167,15 @@ var MarkdownEditorTabs = React.createClass({
         }
 
         return (
-            <div className="col-md-4 md-editor-tabs">
-                <ul style={styleMarkdownEditorTabs} className="nav nav-tabs">
-                    <li className={editorTabClassName}
-                        onClick={this.handleClick.bind(this, "clickEditorTab")}><a>Editor</a></li>
-                    <li className={previewTabClassName}
-                        onClick={this.handleClick.bind(this, "clickPreviewTab")}><a>Preview</a></li>
-                </ul>
+            <div style={styleMarkdownEditorTabs} className="md-editor-tabs">
+                <div style={styleTab} className={editorTabClassName}
+                     onClick={this.handleClick.bind(this, "clickEditorTab")}>
+                  Editor
+                </div>
+                <div style={styleTab} className={previewTabClassName}
+                     onClick={this.handleClick.bind(this, "clickPreviewTab")}>
+                  Preview
+                </div>
             </div>
         );
     },
@@ -265,21 +281,28 @@ var MarkdownEditor = React.createClass({
         }
 
         var styleMarkdownEditorHeader = {
+          "display": "flex",
+          "flexDirection": "column",
           "borderBottom": "1px solid #ddd",
           "marginLeft": "0px",
-          "marginRight": "0px"
-        }
+          "marginRight": "0px",
+          "minHeight": "50px",
+          "justifyContent": "center",
+          "position": "relative"
+        };
 
         var styleMarkdownEditorContainer = {
+          "display": "flex",
+          "flexDirection": "column",
           "marginTop": "2px",
           "paddingTop" : "10px",
           "border": "1px solid #ddd",
-          "backgroundColor": "#f7f7f7"
-        }
+          "backgroundColor": "#f7f7f7",
+        };
 
         return (
                 <div style={styleMarkdownEditorContainer}>
-                    <div style={styleMarkdownEditorHeader} className="row md-editor-header">
+                    <div style={styleMarkdownEditorHeader} className="md-editor-header">
                         {editorMenu}
                         <MarkdownEditorTabs />
                     </div>
