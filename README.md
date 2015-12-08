@@ -36,7 +36,7 @@ var MarkdownEditor = require('react-markdown-editor').MarkdownEditor;
 var TestComponent = React.createClass({
 	render: function() {
 		return (
-			<MarkdownEditor initialContent="Test"/>
+			<MarkdownEditor initialContent="Test" iconSet="font-awesome"/>
 		);
 	}
 });
@@ -44,7 +44,10 @@ var TestComponent = React.createClass({
 React.render(<TestComponent />, document.getElementById('content'));
 ```
 
-```<MarkdownEditor /> ``` has only one prop, the initial content of the textarea.
+```<MarkdownEditor /> ``` takes two props:
+
+    - initialContent which is the text you want the textarea to contain on initialization.
+    - iconSet which is the icons provider you want to use. It can either be font-awesome or materialize-ui
 
 You can also listen to content changes on the editor. If you are using Reflux, by listening to the changes on ```MarkdownEditorContentStore```.
 To be able to do so, just ```require('react-markdown-editor').MarkdownEditorContentStore;```
