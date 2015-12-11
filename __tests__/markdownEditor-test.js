@@ -45,11 +45,12 @@ describe('creates markdown editor', function() {
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
 
         var editorTabs = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-tabs');
-        var ulElement = editorTabs.props.children;
-        expect(ulElement.type).toEqual('ul');
-        expect(ulElement.props.children.length).toEqual(2);
-        expect(ulElement.props.children[0].type).toEqual('li');
-        expect(ulElement.props.children[1].type).toEqual('li');
+        var tabsElement = editorTabs.props.children;
+        expect(tabsElement.length).toEqual(2);
+        expect(tabsElement[0].type).toEqual('div');
+        expect(tabsElement[0].props.children.type).toEqual('span');
+        expect(tabsElement[1].type).toEqual('div');
+        expect(tabsElement[1].props.children.type).toEqual('span');
     });
 
     it('markdown editor content is edit mode by default and displays a text area', function() {

@@ -176,10 +176,12 @@ var MarkdownEditorTabs = React.createClass({
     return (
       <div style={styleMarkdownEditorTabs} className='md-editor-tabs'>
         <div style={editorTabStyle}
+          className="md-editor-tabs-item"
           onClick={this.handleClick.bind(this, 'clickEditorTab')}>
           <span>Editor</span>
         </div>
         <div style={previewTabStyle}
+          className="md-editor-tabs-item"
           onClick={this.handleClick.bind(this, 'clickPreviewTab')}>
           <span>Preview</span>
         </div>
