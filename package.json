@@ -27,7 +27,8 @@
       "./node_modules/react",
       "./node_modules/reflux",
       "./node_modules/react-dom",
-      "./node_modules/react-addons-test-utils"
+      "./node_modules/react-addons-test-utils",
+      "./node_modules/react-tools"
     ],
     "collectCoverage": true
   },
