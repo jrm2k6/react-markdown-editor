@@ -46,6 +46,8 @@
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
+    "expect": "^1.13.4",
+    "expect-jsx": "^2.2.2",
     "jest": "^0.1.40",
     "jest-cli": "^0.8.0",
     "mocha": "^2.2.4",
