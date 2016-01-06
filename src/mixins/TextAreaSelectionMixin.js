@@ -1,7 +1,5 @@
 var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
 var Reflux = require('reflux');
-var React = require('react');
-var React = require('react-dom');
 
 var _timerClick;
 var _canClear = true;
