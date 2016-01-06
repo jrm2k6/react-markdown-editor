@@ -1,6 +1,7 @@
 // __tests__/MarkdownEditor-test.js
 
 jest.dontMock('../src/MarkdownEditor.js');
+jest.dontMock('../src/mixins/ButtonManagerMixin.js');
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -107,7 +108,7 @@ describe('menu button interactions', function() {
     it('clicking on bold button dispatches action', function() {
         //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
-        var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-bold');
+        var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'bold-btn');
         var btnNode = ReactDOM.findDOMNode(btn);
 
         // when
@@ -120,7 +121,7 @@ describe('menu button interactions', function() {
     it('clicking on italic button dispatches action', function() {
         //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
-        var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-italic');
+        var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'italic-btn');
         var btnNode = ReactDOM.findDOMNode(btn);
 
         // when
@@ -159,7 +160,7 @@ describe('menu button interactions', function() {
     it('clicking on list button dispatches action', function() {
         //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
-        var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-list-ul');
+        var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'list-btn');
         var btnNode = ReactDOM.findDOMNode(btn);
 
         // when
@@ -172,7 +173,7 @@ describe('menu button interactions', function() {
     it('clicking on image button dispatches action', function() {
         //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
-        var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-file-image-o');
+        var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'insert-img-btn');
         var btnNode = ReactDOM.findDOMNode(btn);
 
         // when
@@ -185,7 +186,7 @@ describe('menu button interactions', function() {
     it('clicking on link button dispatches action', function() {
         //given
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
-        var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'fa-link');
+        var btn = TestUtils.findRenderedDOMComponentWithClass(editor, 'insert-link-btn');
         var btnNode = ReactDOM.findDOMNode(btn);
 
         // when
