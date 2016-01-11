@@ -24,11 +24,11 @@
   "jest": {
     "scriptPreprocessor": "./scripts/preprocessor.js",
     "unmockedModulePathPatterns": [
-      "./node_modules/react",
-      "./node_modules/reflux",
-      "./node_modules/react-dom",
-      "./node_modules/react-addons-test-utils",
-      "./node_modules/react-tools"
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/reflux",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/react-tools"
     ],
     "collectCoverage": true
   },
