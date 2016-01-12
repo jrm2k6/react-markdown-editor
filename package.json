@@ -40,6 +40,8 @@
   "dependencies": {
     "markdown": "^0.5.0",
     "radium": "^0.15.3",
+    "react-redux": "^4.0.6",
+    "redux": "^3.0.5",
     "reflux": "^0.3.0"
   },
   "peerDependencies": {
@@ -54,6 +56,7 @@
     "jest-cli": "^0.8.0",
     "mocha": "^2.2.4",
     "react-addons-test-utils": "^0.14.3",
-    "react-tools": "^0.13.3"
+    "react-tools": "^0.13.3",
+    "redux-devtools": "^3.0.1"
   }
 }
