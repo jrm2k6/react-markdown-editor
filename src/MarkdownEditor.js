@@ -270,12 +270,21 @@ var MarkdownEditor = React.createClass({
   mixins: [Reflux.ListenerMixin],
 
   propTypes: {
-    initialContent: React.PropTypes.string.isRequired,
-    iconsSet: React.PropTypes.oneOf(['font-awesome', 'materialize-ui']).isRequired
+    iconsSet: React.PropTypes.oneOf(['font-awesome', 'materialize-ui']).isRequired,
+    content: React.PropTypes.string,
+    onContentChange: React.PropTypes.func
   },
 
   getInitialState: function() {
-    return {content: this.props.initialContent, inEditMode: true};
+    return {content: this.props.content, inEditMode: true};
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.content) {
+      this.setState({
+        content: nextProps.content
+      })
+    }
   },
 
   render: function() {
@@ -323,6 +332,9 @@ var MarkdownEditor = React.createClass({
   },
 
   onChangeHandler: function(newContent) {
+    if (this.props.onContentChange) {
+      this.props.onContentChange(newContent);
+    }
     this.setState({content: newContent});
   },
 
