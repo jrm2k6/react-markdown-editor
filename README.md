@@ -44,13 +44,18 @@ var TestComponent = React.createClass({
 React.render(<TestComponent />, document.getElementById('content'));
 ```
 
-```<MarkdownEditor /> ``` takes two props:
+```<MarkdownEditor /> ``` takes two required props:
 
     - initialContent which is the text you want the textarea to contain on initialization.
     - iconsSet which is the icons provider you want to use. It can either be font-awesome or materialize-ui
 
+Optional props:
+
+   - ```onContentChange```, function to be called on each content change (as the property name says!)
+
 You can also listen to content changes on the editor. If you are using Reflux, by listening to the changes on ```MarkdownEditorContentStore```.
 To be able to do so, just ```require('react-markdown-editor').MarkdownEditorContentStore;```
+
 ## Dependencies
 You can modify the styles directly by modifying the styles declared in ```dist/MarkdownEditor.js```. The pre-existing styles assume that you are using Bootstrap and Font Awesome.
 ## TODO
