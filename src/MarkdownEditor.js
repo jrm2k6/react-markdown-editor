@@ -271,7 +271,8 @@ var MarkdownEditor = React.createClass({
 
   propTypes: {
     initialContent: React.PropTypes.string.isRequired,
-    iconsSet: React.PropTypes.oneOf(['font-awesome', 'materialize-ui']).isRequired
+    iconsSet: React.PropTypes.oneOf(['font-awesome', 'materialize-ui']).isRequired,
+    onContentChange: React.PropTypes.func
   },
 
   getInitialState: function() {
@@ -323,6 +324,10 @@ var MarkdownEditor = React.createClass({
   },
 
   onChangeHandler: function(newContent) {
+    if (this.props.onContentChange) {
+      this.props.onContentChange(newContent);
+    }
+
     this.setState({content: newContent});
   },
 

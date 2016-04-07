@@ -212,4 +212,22 @@ describe('textarea changes behavior', function() {
         // then
         expect(PublicMarkdownEditorActions.updateText).toBeCalled();
     });
+
+    it('calls onContentChange if provided on each content change', function() {
+      //given
+      var onContentChangeCalled = 0;
+      var _onContentChange = function(content) {
+        onContentChangeCalled++;
+      };
+
+      var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome" onContentChange={_onContentChange}/>);
+      var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
+      var textareaNode = ReactDOM.findDOMNode(textarea);
+
+      // when
+      TestUtils.Simulate.change(textareaNode, "markdownContent");
+
+      // then
+      expect(onContentChangeCalled).toEqual(1);
+    });
 });
