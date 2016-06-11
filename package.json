@@ -39,21 +39,20 @@
   },
   "dependencies": {
     "markdown": "^0.5.0",
-    "radium": "^0.15.3",
-    "reflux": "^0.3.0"
+    "reflux": "^0.4.1"
   },
   "peerDependencies": {
-    "react": "^0.14.2",
-    "react-dom": "^0.14.2"
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
-    "expect": "^1.13.4",
-    "expect-jsx": "^2.2.2",
+    "expect": "^1.20.1",
+    "expect-jsx": "^2.6.0",
     "jest": "^0.1.40",
-    "jest-cli": "^0.10.0",
-    "mocha": "^2.2.4",
-    "react-addons-test-utils": "^0.14.3",
+    "jest-cli": "^0.10.2",
+    "mocha": "^2.5.3",
+    "react-addons-test-utils": "^0.14.8",
     "react-tools": "^0.13.3"
   }
 }
