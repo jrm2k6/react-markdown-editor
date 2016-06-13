@@ -29,7 +29,8 @@
       "<rootDir>/node_modules/react-dom",
       "<rootDir>/node_modules/fbjs",
       "<rootDir>/node_modules/react-addons-test-utils",
-      "<rootDir>/node_modules/react-tools"
+      "<rootDir>/node_modules/react-tools",
+      "<rootDir>/node_modules/enzyme"
     ],
     "collectCoverage": true
   },
@@ -39,19 +40,26 @@
   },
   "dependencies": {
     "markdown": "^0.5.0",
+    "react": "^15.1.0",
+    "react-addons-test-utils": "^15.1.0",
+    "react-dom": "^15.1.0",
     "reflux": "^0.4.1"
   },
   "peerDependencies": {
     "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-addons-test-utils": "^15.1.0"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
+    "enzyme": "^2.3.0",
     "expect": "^1.20.1",
     "expect-jsx": "^2.6.0",
     "jest": "^0.1.40",
     "jest-cli": "^0.10.2",
     "mocha": "^2.5.3",
-    "react-addons-test-utils": "^0.14.8",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
     "react-tools": "^0.13.3"
   }
 }
