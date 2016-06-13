@@ -391,4 +391,8 @@ var MarkdownEditor = React.createClass({
   }
 });
 
-module.exports = MarkdownEditor;
+module.exports = {
+  MarkdownEditor: MarkdownEditor,
+  MarkdownEditorMenu: MarkdownEditorMenu,
+  MarkdownEditorTabs: MarkdownEditorTabs
+};

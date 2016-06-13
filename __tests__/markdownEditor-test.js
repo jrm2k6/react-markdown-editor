@@ -6,9 +6,12 @@ jest.dontMock('../src/mixins/ButtonManagerMixin.js');
 var React = require('react');
 var ReactDOM = require('react-dom');
 var TestUtils = require('react-addons-test-utils');
-var MarkdownEditor = require('../src/MarkdownEditor.js');
+var MarkdownEditor = require('../src/MarkdownEditor.js').MarkdownEditor;
+var MarkdownEditorMenu = require('../src/MarkdownEditor.js').MarkdownEditorMenu;
+var MarkdownEditorTabs = require('../src/MarkdownEditor.js').MarkdownEditorTabs;
 var MarkdownEditorActions = require('../src/actions/MarkdownEditorActions.js');
 var PublicMarkdownEditorActions = require('../src/actions/PublicMarkdownEditorActions.js');
+var enzyme = require('enzyme');
 
 
 afterEach(function() {
@@ -18,40 +21,43 @@ afterEach(function() {
 
 describe('creates markdown editor', function() {
     it('creates markdown editor element composed of two divs', function() {
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
-
-        expect(ReactDOM.findDOMNode(editor).children.length).toEqual(2);
+        var renderer = TestUtils.createRenderer();
+        renderer.render(<MarkdownEditor
+          initialContent="initialContent"
+          iconsSet="font-awesome"/>
+        );
+        var result = renderer.getRenderOutput();
+        expect(result.props.children.length).toEqual(2);
     });
 
     it('markdown editor header is composed of two divs in edit mode', function() {
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
+        var renderer = TestUtils.createRenderer();
+        renderer.render(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
 
-        var menuElements = TestUtils.scryRenderedDOMComponentsWithClass(editor, 'md-editor-header');
+        var result = renderer.getRenderOutput();
+        var menuElements = result.props.children[0];
 
-        expect(menuElements.length).toEqual(1);
-        var children = menuElements[0].props.children;
+        expect(menuElements.props.className).toEqual('md-editor-header');
+
+        var children = menuElements.props.children;
         expect(children.length).toEqual(2);
         expect(children[0].type.displayName).toEqual('MarkdownEditorMenu');
         expect(children[1].type.displayName).toEqual('MarkdownEditorTabs');
     });
 
     it('markdown editor menu has 7 buttons', function() {
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
-
-        var editorMenu = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-menu');
-        expect(editorMenu.props.children.length).toEqual(7);
+        var editor = enzyme.shallow(<MarkdownEditorMenu iconsSet="font-awesome"/>);
+        expect(editor.children().length).toEqual(7);
     });
 
     it('markdown editor tabs element has 2 tabs', function() {
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
-
-        var editorTabs = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-tabs');
-        var tabsElement = editorTabs.props.children;
-        expect(tabsElement.length).toEqual(2);
-        expect(tabsElement[0].type).toEqual('div');
-        expect(tabsElement[0].props.children.type).toEqual('span');
-        expect(tabsElement[1].type).toEqual('div');
-        expect(tabsElement[1].props.children.type).toEqual('span');
+        var editor = enzyme.shallow(<MarkdownEditorTabs />);
+        expect(editor.children().length).toEqual(2);
+        var children = editor.children;
+        expect(editor.childAt(0).type()).toEqual('div');
+        expect(editor.childAt(0).childAt(0).type()).toEqual('span');
+        expect(editor.childAt(1).type()).toEqual('div');
+        expect(editor.childAt(1).childAt(0).type()).toEqual('span');
     });
 
     it('markdown editor content is edit mode by default and displays a text area', function() {
