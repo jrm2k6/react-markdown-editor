@@ -7,7 +7,7 @@ jest.dontMock('../src/mixins/TextAreaSelectionMixin.js');
 var React = require('react');
 var ReactDOM = require('react-dom');
 var TestUtils = require('react-addons-test-utils');
-var MarkdownEditor = require('../src/MarkdownEditor.js');
+var MarkdownEditor = require('../src/MarkdownEditor.js').MarkdownEditor;
 var MarkdownEditorStore = require('../src/stores/MarkdownEditorStore.js');
 var MarkdownSelectionActions = require('../src/actions/MarkdownSelectionActions.js');
 var MarkdownEditorActions = require('../src/actions/MarkdownEditorActions.js');

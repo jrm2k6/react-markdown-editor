@@ -9,7 +9,7 @@ jest.dontMock('../src/mixins/TextAreaSelectionMixin.js');
 
 var React = require('react');
 var TestUtils = require('react-addons-test-utils');
-var MarkdownEditor = require('../src/MarkdownEditor.js');
+var MarkdownEditor = require('../src/MarkdownEditor.js').MarkdownEditor;
 var MarkdownSelectionStore = require('../src/stores/MarkdownSelectionStore.js');
 var MarkdownSelectionActions = require('../src/actions/MarkdownSelectionActions.js');
 var MarkdownEditorActions = require('../src/actions/MarkdownEditorActions.js');
