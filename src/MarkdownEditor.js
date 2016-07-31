@@ -356,10 +356,10 @@ var MarkdownEditor = React.createClass({
     var beforeSelectionContent = text.slice(0, selection.selectionStart);
     var afterSelectionContent = text.slice(selection.selectionEnd, text.length);
     var updatedText = token.applyTokenTo(selection.selectedText);
-
     var _updatedContent = beforeSelectionContent + updatedText + afterSelectionContent;
     PublicMarkdownEditorActions.updateText(MarkdownUtils.toMarkdown(_updatedContent));
     this.setState({content: _updatedContent});
+    this.props.onContentChange(_updatedContent);
   },
 
   generateMarkdownToken: function(actionType) {
