@@ -16,6 +16,7 @@ var MarkdownEditorMenu = require('./components/MarkdownEditorMenu');
 var MarkdownEditorTabs = require('./components/MarkdownEditorTabs');
 var MarkdownEditorContent = require('./components/MarkdownEditorContent');
 var MarkdownEditorPreview = require('./components/MarkdownEditorPreview');
+var objectAssign = require('object-assign');
 
 var NullMarkdownToken = MarkdownTokenFactory.NullMarkdownToken;
 var RegularMarkdownToken = MarkdownTokenFactory.RegularMarkdownToken;
@@ -41,65 +42,31 @@ var MarkdownEditor = React.createClass({
   render: function() {
     var divContent;
     var editorMenu;
-    var styles;
-    if(!this.props.styles) {
-      styles = {
-        styleMarkdownMenu:{},
-        styleMarkdownEditorTabs:{},
-        styleTab:{},
-        styleActiveTab:{},
-        styleMarkdownTextArea:{},
-        styleMarkdownPreviewArea:{},
-      }
-    } else {
-      styles = this.props.styles
-    }
-
+   
     if (this.state.inEditMode) {
-      divContent = <MarkdownEditorContent styles={{styleMarkdownTextArea: styles.styleMarkdownTextArea}} 
+      divContent = <MarkdownEditorContent styles={{styleMarkdownTextArea: this.props.styles.styleMarkdownTextArea}} 
                                           content={this.state.content} onChangeHandler={this.onChangeHandler}/>;
-      editorMenu = <MarkdownEditorMenu styles={{styleMarkdownMenu: styles.styleMarkdownMenu}}
+      editorMenu = <MarkdownEditorMenu styles={{styleMarkdownMenu: this.props.styles.styleMarkdownMenu}}
                                       iconsSet={this.props.iconsSet}/>;
     } else {
-      divContent = <MarkdownEditorPreview styles={{styleMarkdownPreviewArea: styles.styleMarkdownPreviewArea}} 
+      divContent = <MarkdownEditorPreview styles={{styleMarkdownPreviewArea: this.props.styles.styleMarkdownPreviewArea}} 
                                           content={this.state.content} />;
       editorMenu = null;
     }
 
-    var styleMarkdownEditorHeader = {
-      'display': 'flex',
-      'flexDirection': 'column',
-      'borderBottom': '1px solid #ddd',
-      'marginLeft': '0px',
-      'marginRight': '0px',
-      'minHeight': '50px',
-      'justifyContent': 'center',
-      'position': 'relative'
-    };
+    var styleMarkdownEditorHeader = MarkdownEditor.defaultProps.styles.styleMarkdownEditorHeader;
+    objectAssign(styleMarkdownEditorHeader, this.props.styles.styleMarkdownEditorHeader);
 
-    if(this.props.styles.styleMarkdownEditorHeader) {
-      Object.assign(styleMarkdownEditorHeader, this.props.styles.styleMarkdownEditorHeader);
-    }
-
-    var styleMarkdownEditorContainer = {
-      'display': 'flex',
-      'flexDirection': 'column',
-      'marginTop': '2px',
-      'paddingTop': '10px',
-      'border': '1px solid #ddd',
-      'backgroundColor': '#f7f7f7'
-    };
-
-    if(this.props.styles.styleMarkdownEditorContainer) {
-      Object.assign(styleMarkdownEditorContainer, this.props.styles.styleMarkdownEditorContainer);
-    }
+    var styleMarkdownEditorContainer = MarkdownEditor.defaultProps.styles.styleMarkdownEditorContainer;
+    objectAssign(styleMarkdownEditorContainer, this.props.styles.styleMarkdownEditorContainer);
 
     return (
-      <div id='container'
-        style={styleMarkdownEditorContainer}>
+      <div style={styleMarkdownEditorContainer}>
         <div style={styleMarkdownEditorHeader} className='md-editor-header'>
           {editorMenu}
-          <MarkdownEditorTabs styles={{styleMarkdownEditorTabs: styles.styleMarkdownEditorTabs, styleTab: styles.styleTab, styleActiveTab: styles.styleActiveTab}} />
+          <MarkdownEditorTabs styles={{ styleMarkdownEditorTabs: this.props.styles.styleMarkdownEditorTabs, 
+                                        styleTab: this.props.styles.styleTab, 
+                                        styleActiveTab: this.props.styles.styleActiveTab}} />
         </div>
         {divContent}
       </div>
@@ -174,6 +141,36 @@ var MarkdownEditor = React.createClass({
   }
 });
 
+MarkdownEditor.defaultProps = {
+   styles : {
+        styleMarkdownEditorHeader : {
+          'display': 'flex',
+          'flexDirection': 'column',
+          'borderBottom': '1px solid #ddd',
+          'marginLeft': '0px',
+          'marginRight': '0px',
+          'minHeight': '50px',
+          'justifyContent': 'center',
+          'position': 'relative',
+        },
+        styleMarkdownEditorContainer : {
+          'display': 'flex',
+          'flexDirection': 'column',
+          'marginTop': '2px',
+          'paddingTop': '10px',
+          'border': '1px solid #ddd',
+          'backgroundColor': '#f7f7f7'
+        },
+        styleMarkdownMenu : {
+            'margin': '5px 0',
+            'flex': '1',
+            'display': 'flex',
+            'position': 'absolute',
+            'right': '20px',
+            'top': '10px'
+        }
+      }
+}
 module.exports = {
   MarkdownEditor: MarkdownEditor,
   MarkdownEditorMenu: MarkdownEditorMenu,

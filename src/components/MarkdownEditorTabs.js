@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var Reflux = require('reflux');
 var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
 var MarkdownEditorTabsInteractionStore = require('../stores/MarkdownEditorTabsInteractionStore');
+var objectAssign = require('object-assign');
 
 var MarkdownEditorTabs = React.createClass({
   mixins: [Reflux.ListenerMixin],
@@ -25,42 +26,13 @@ var MarkdownEditorTabs = React.createClass({
 
   render: function() {
 
-    var styleMarkdownEditorTabs = {
-      'border': 'none',
-      'display': 'flex',
-      'justifyContent': 'flex-start'
-    };
+    var styleActiveTab = MarkdownEditorTabs.defaultProps.styles.styleActiveTab;
+    var styleMarkdownEditorTabs = MarkdownEditorTabs.defaultProps.styles.styleMarkdownEditorTabs;
+    var styleTab = MarkdownEditorTabs.defaultProps.styles.styleTab;
 
-    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleMarkdownEditorTabs')) {
-        Object.assign(styleMarkdownEditorTabs, this.props.styles.styleMarkdownEditorTabs);
-    }
-
-    var styleTab = {
-      'padding': '0px 20px',
-      'cursor': 'pointer',
-      'display': 'flex',
-      'justifyContent': 'center',
-      'alignItems': 'center',
-      'height': '50px'
-    };
-
-    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleTab')) {
-        Object.assign(styleTab, this.props.styles.styleTab);
-    }
-
-    var styleActiveTab = {
-      'padding': '0px 20px',
-      'cursor': 'pointer',
-      'display': 'flex',
-      'justifyContent': 'center',
-      'alignItems': 'center',
-      'height': '50px',
-      'borderLeft': '1px solid #ddd',
-      'borderRight': '1px solid #ddd',
-      'borderTop': '1px solid #ddd',
-      'backgroundColor': '#fff',
-      'borderRadius': '3px'
-    };
+    objectAssign(styleActiveTab, this.props.styles.styleActiveTab);
+    objectAssign(styleMarkdownEditorTabs, this.props.styles.styleMarkdownEditorTabs);
+    objectAssign(styleTab, this.props.styles.styleTab);
 
     if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleActiveTab')) {
         Object.assign(styleActiveTab, this.props.styles.styleActiveTab);
@@ -96,5 +68,36 @@ var MarkdownEditorTabs = React.createClass({
     MarkdownEditorActions[actionName]();
   }
 });
+
+MarkdownEditorTabs.defaultProps = {
+    styles : {
+        styleMarkdownEditorTabs : {
+            'border': 'none',
+            'display': 'flex',
+            'justifyContent': 'flex-start'
+        },
+        styleTab : {
+            padding: '0px 20px',
+            cursor: 'pointer',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50px'
+         },
+         styleActiveTab : {
+            padding: '0px 20px',
+            cursor: 'pointer',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50px',
+            borderLeft: '1px solid #ddd',
+            borderRight: '1px solid #ddd',
+            borderTop: '1px solid #ddd',
+            backgroundColor: '#fff',
+            borderRadius: '3px'
+        }
+    }
+}
 
 module.exports = MarkdownEditorTabs

@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Markdown = require('markdown').markdown;
+var objectAssign = require('object-assign');
 
 var MarkdownEditorPreview = React.createClass({
   propTypes: {
@@ -12,17 +13,8 @@ var MarkdownEditorPreview = React.createClass({
     var htmlContent = this.props.content.replace(/[\n]/g, '  \n');
     htmlContent = Markdown.toHTML(htmlContent);
 
-    var styleMarkdownPreviewArea = {
-      'height': '90%',
-      'width': '100%',
-      'padding': '30px 10px',
-      'backgroundColor': '#fff',
-      'border': 'none'
-    };
-
-    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleMarkdownPreviewArea')) {
-        Object.assign(styleMarkdownPreviewArea, this.props.styles.styleMarkdownPreviewArea)
-    }
+    var styleMarkdownPreviewArea = MarkdownEditorPreview.defaultProps.styles.styleMarkdownPreviewArea
+    objectAssign(styleMarkdownPreviewArea, this.props.styles.styleMarkdownPreviewArea);
 
     return (
       <div
@@ -32,5 +24,17 @@ var MarkdownEditorPreview = React.createClass({
     );
   }
 });
+
+MarkdownEditorPreview.defaultProps = {
+    styles : {
+        styleMarkdownPreviewArea : {
+            height: '90%',
+            width: '100%',
+            padding: '30px 10px',
+            backgroundColor: '#fff',
+            border: 'none'
+        }
+    }
+}
 
 module.exports = MarkdownEditorPreview

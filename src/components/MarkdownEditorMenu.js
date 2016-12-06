@@ -3,12 +3,13 @@ var ReactDOM = require('react-dom');
 var Reflux = require('reflux');
 var ButtonManagerMixin = require('../mixins/ButtonManagerMixin');
 var MarkdownSelectionStore = require('../stores/MarkdownSelectionStore');
+var objectAssign = require('object-assign');
 
 var MarkdownEditorMenu = React.createClass({
   mixins: [Reflux.ListenerMixin, ButtonManagerMixin],
 
   propTypes: {
-    iconsSet: React.PropTypes.string.isRequired,
+    iconsSet: React.PropTypes.string.isRequired
   },
 
   getInitialState: function() {
@@ -24,19 +25,6 @@ var MarkdownEditorMenu = React.createClass({
 
   render: function() {
 
-    var styleMarkdownMenu = {
-      'margin': '5px 0',
-      'flex': '1',
-      'display': 'flex',
-      'position': 'absolute',
-      'right': '20px',
-      'top': '10px'
-    };
-
-    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleMarkdownMenu')) {
-        Object.assign(styleMarkdownMenu,this.props.styles.styleMarkdownMenu)
-    }
-
     var _disabled = (!this.state.enabled) ? 'disabled' : '';
     var boldButton = this.getBoldButton(_disabled, this.handleBoldButtonClick);
     var italicButton = this.getItalicButton(_disabled, this.handleItalicButtonClick);
@@ -45,6 +33,9 @@ var MarkdownEditorMenu = React.createClass({
     var linkButton = this.getLinkButton(_disabled, this.handleLinkButtonClick);
     var headerButton = this.getButtonWithoutIcon(_disabled, this.handleHeaderButtonClick, 'md-editor-menu-header', 'Header');
     var subHeaderButton = this.getButtonWithoutIcon(_disabled, this.handleSubHeaderButtonClick, 'md-editor-menu-subheader', 'Subheader');
+
+    var styleMarkdownMenu = MarkdownEditorMenu.defaultProps.styles.styleMarkdownMenu;
+    objectAssign(styleMarkdownMenu, this.props.styles.styleMarkdownMenu);
 
     return (
       <div style={styleMarkdownMenu} className='md-editor-menu'>
@@ -99,5 +90,18 @@ var MarkdownEditorMenu = React.createClass({
     MarkdownEditorActions.makeList();
   }
 });
+
+MarkdownEditorMenu.defaultProps = {
+    styles: { 
+        styleMarkdownMenu : {
+            'margin': '5px 0',
+            'flex': '1',
+            'display': 'flex',
+            'position': 'absolute',
+            'right': '20px',
+            'top': '10px'
+        }
+    }
+}
 
 module.exports = MarkdownEditorMenu

@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var MarkdownUtils = require('../utils/MarkdownUtils');
 var PublicMarkdownEditorActions = require('../actions/PublicMarkdownEditorActions');
 var TextAreaSelectionMixin = require('../mixins/TextAreaSelectionMixin');
-
+var objectAssign = require('object-assign');
 
 var MarkdownEditorContent = React.createClass({
   propTypes: {
@@ -14,16 +14,8 @@ var MarkdownEditorContent = React.createClass({
   mixins: [TextAreaSelectionMixin],
 
   render: function() {
-    var styleMarkdownTextArea = {
-      'height': '90%',
-      'width': '100%',
-      'padding': '30px 10px',
-      'border': 'none'
-    };
-
-    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleMarkdownTextArea') ) {
-      Object.assign(styleMarkdownTextArea,this.props.styles.styleMarkdownTextArea)
-    }
+    var styleMarkdownTextArea = MarkdownEditorContent.defaultProps.styles.styleMarkdownTextArea
+    objectAssign(styleMarkdownTextArea, this.props.styles.styleMarkdownTextArea)
 
     return (
       <textarea
@@ -53,5 +45,16 @@ var MarkdownEditorContent = React.createClass({
     this.refs.editor.value = this.props.content;
   }
 });
+
+MarkdownEditorContent.defaultProps = {
+  styles : {
+    styleMarkdownTextArea : {
+      height: '90%',
+      width: '100%',
+      padding: '30px 10px',
+      border: 'none'
+    }
+  }
+}
 
 module.exports = MarkdownEditorContent
