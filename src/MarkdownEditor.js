@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Reflux = require('reflux');
@@ -14,11 +12,10 @@ var MarkdownSelectionStore = require('./stores/MarkdownSelectionStore');
 var MarkdownEditorTabsInteractionStore = require('./stores/MarkdownEditorTabsInteractionStore');
 var MarkdownTokenFactory = require('./utils/MarkdownTokenFactory');
 var MarkdownUtils = require('./utils/MarkdownUtils');
-var MarkdownEditorMenu = require('./compnents/MarkdownEditorMenu');
-var MarkdownEditorTabs = require('./compnents/MarkdownEditorTabs');
-var MarkdownEditorContent = require('./compnents/MarkdownEditorContent');
-var MarkdownEditorPreview = require('./compnents/MarkdownEditorPreview');
-var MarkdownEditor = require('./compnents/MarkdownEditor');
+var MarkdownEditorMenu = require('./components/MarkdownEditorMenu');
+var MarkdownEditorTabs = require('./components/MarkdownEditorTabs');
+var MarkdownEditorContent = require('./components/MarkdownEditorContent');
+var MarkdownEditorPreview = require('./components/MarkdownEditorPreview');
 
 var NullMarkdownToken = MarkdownTokenFactory.NullMarkdownToken;
 var RegularMarkdownToken = MarkdownTokenFactory.RegularMarkdownToken;
@@ -44,12 +41,28 @@ var MarkdownEditor = React.createClass({
   render: function() {
     var divContent;
     var editorMenu;
+    var styles;
+    if(!this.props.styles) {
+      styles = {
+        styleMarkdownMenu:{},
+        styleMarkdownEditorTabs:{},
+        styleTab:{},
+        styleActiveTab:{},
+        styleMarkdownTextArea:{},
+        styleMarkdownPreviewArea:{},
+      }
+    } else {
+      styles = this.props.styles
+    }
 
     if (this.state.inEditMode) {
-      divContent = <MarkdownEditorContent content={this.state.content} onChangeHandler={this.onChangeHandler}/>;
-      editorMenu = <MarkdownEditorMenu iconsSet={this.props.iconsSet}/>;
+      divContent = <MarkdownEditorContent styles={{styleMarkdownTextArea: styles.styleMarkdownTextArea}} 
+                                          content={this.state.content} onChangeHandler={this.onChangeHandler}/>;
+      editorMenu = <MarkdownEditorMenu styles={{styleMarkdownMenu: styles.styleMarkdownMenu}}
+                                      iconsSet={this.props.iconsSet}/>;
     } else {
-      divContent = <MarkdownEditorPreview content={this.state.content} />;
+      divContent = <MarkdownEditorPreview styles={{styleMarkdownPreviewArea: styles.styleMarkdownPreviewArea}} 
+                                          content={this.state.content} />;
       editorMenu = null;
     }
 
@@ -65,7 +78,7 @@ var MarkdownEditor = React.createClass({
     };
 
     if(this.props.styles.styleMarkdownEditorHeader) {
-      styleMarkdownEditorHeader = this.props.styles.styleMarkdownEditorHeader;
+      Object.assign(styleMarkdownEditorHeader, this.props.styles.styleMarkdownEditorHeader);
     }
 
     var styleMarkdownEditorContainer = {
@@ -78,15 +91,15 @@ var MarkdownEditor = React.createClass({
     };
 
     if(this.props.styles.styleMarkdownEditorContainer) {
-      styleMarkdownEditorContainer = this.props.styles.styleMarkdownEditorContainer;
+      Object.assign(styleMarkdownEditorContainer, this.props.styles.styleMarkdownEditorContainer);
     }
 
     return (
-      <div
+      <div id='container'
         style={styleMarkdownEditorContainer}>
         <div style={styleMarkdownEditorHeader} className='md-editor-header'>
           {editorMenu}
-          <MarkdownEditorTabs />
+          <MarkdownEditorTabs styles={{styleMarkdownEditorTabs: styles.styleMarkdownEditorTabs, styleTab: styles.styleTab, styleActiveTab: styles.styleActiveTab}} />
         </div>
         {divContent}
       </div>

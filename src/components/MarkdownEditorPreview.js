@@ -1,3 +1,7 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Markdown = require('markdown').markdown;
+
 var MarkdownEditorPreview = React.createClass({
   propTypes: {
     content: React.PropTypes.string.isRequired
@@ -16,6 +20,10 @@ var MarkdownEditorPreview = React.createClass({
       'border': 'none'
     };
 
+    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleMarkdownPreviewArea')) {
+        Object.assign(styleMarkdownPreviewArea, this.props.styles.styleMarkdownPreviewArea)
+    }
+
     return (
       <div
         style={styleMarkdownPreviewArea}
@@ -25,4 +33,4 @@ var MarkdownEditorPreview = React.createClass({
   }
 });
 
-export default MarkdownEditorPreview
+module.exports = MarkdownEditorPreview

@@ -1,3 +1,10 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+var MarkdownUtils = require('../utils/MarkdownUtils');
+var PublicMarkdownEditorActions = require('../actions/PublicMarkdownEditorActions');
+var TextAreaSelectionMixin = require('../mixins/TextAreaSelectionMixin');
+
+
 var MarkdownEditorContent = React.createClass({
   propTypes: {
     content: React.PropTypes.string.isRequired,
@@ -13,6 +20,10 @@ var MarkdownEditorContent = React.createClass({
       'padding': '30px 10px',
       'border': 'none'
     };
+
+    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleMarkdownTextArea') ) {
+      Object.assign(styleMarkdownTextArea,this.props.styles.styleMarkdownTextArea)
+    }
 
     return (
       <textarea
@@ -43,4 +54,4 @@ var MarkdownEditorContent = React.createClass({
   }
 });
 
-export default MarkdownEditorContent
+module.exports = MarkdownEditorContent

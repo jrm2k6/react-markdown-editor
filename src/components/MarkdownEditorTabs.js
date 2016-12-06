@@ -1,3 +1,9 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Reflux = require('reflux');
+var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
+var MarkdownEditorTabsInteractionStore = require('../stores/MarkdownEditorTabsInteractionStore');
+
 var MarkdownEditorTabs = React.createClass({
   mixins: [Reflux.ListenerMixin],
 
@@ -18,11 +24,16 @@ var MarkdownEditorTabs = React.createClass({
   },
 
   render: function() {
+
     var styleMarkdownEditorTabs = {
       'border': 'none',
       'display': 'flex',
       'justifyContent': 'flex-start'
     };
+
+    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleMarkdownEditorTabs')) {
+        Object.assign(styleMarkdownEditorTabs, this.props.styles.styleMarkdownEditorTabs);
+    }
 
     var styleTab = {
       'padding': '0px 20px',
@@ -32,6 +43,10 @@ var MarkdownEditorTabs = React.createClass({
       'alignItems': 'center',
       'height': '50px'
     };
+
+    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleTab')) {
+        Object.assign(styleTab, this.props.styles.styleTab);
+    }
 
     var styleActiveTab = {
       'padding': '0px 20px',
@@ -46,6 +61,10 @@ var MarkdownEditorTabs = React.createClass({
       'backgroundColor': '#fff',
       'borderRadius': '3px'
     };
+
+    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleActiveTab')) {
+        Object.assign(styleActiveTab, this.props.styles.styleActiveTab);
+    }
 
     var editorTabStyle;
     var previewTabStyle;
@@ -78,4 +97,4 @@ var MarkdownEditorTabs = React.createClass({
   }
 });
 
-export default MarkdownEditorTabs
+module.exports = MarkdownEditorTabs

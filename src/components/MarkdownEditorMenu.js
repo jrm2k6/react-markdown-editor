@@ -1,8 +1,14 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Reflux = require('reflux');
+var ButtonManagerMixin = require('../mixins/ButtonManagerMixin');
+var MarkdownSelectionStore = require('../stores/MarkdownSelectionStore');
+
 var MarkdownEditorMenu = React.createClass({
   mixins: [Reflux.ListenerMixin, ButtonManagerMixin],
 
   propTypes: {
-    iconsSet: React.PropTypes.string.isRequired
+    iconsSet: React.PropTypes.string.isRequired,
   },
 
   getInitialState: function() {
@@ -17,6 +23,7 @@ var MarkdownEditorMenu = React.createClass({
   },
 
   render: function() {
+
     var styleMarkdownMenu = {
       'margin': '5px 0',
       'flex': '1',
@@ -25,6 +32,10 @@ var MarkdownEditorMenu = React.createClass({
       'right': '20px',
       'top': '10px'
     };
+
+    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleMarkdownMenu')) {
+        Object.assign(styleMarkdownMenu,this.props.styles.styleMarkdownMenu)
+    }
 
     var _disabled = (!this.state.enabled) ? 'disabled' : '';
     var boldButton = this.getBoldButton(_disabled, this.handleBoldButtonClick);
@@ -89,4 +100,4 @@ var MarkdownEditorMenu = React.createClass({
   }
 });
 
-export default MarkdownEditorMenu
+module.exports = MarkdownEditorMenu
