@@ -52,12 +52,75 @@ React.render(<TestComponent />, document.getElementById('content'));
 Optional props:
 
    - ```onContentChange```, function to be called on each content change (as the property name says!)
+   - ```styles```, see [Styling](#styling) below
 
 You can also listen to content changes on the editor. If you are using Reflux, by listening to the changes on ```MarkdownEditorContentStore```.
 To be able to do so, just ```require('react-markdown-editor').MarkdownEditorContentStore;```
 
 ## Dependencies
 You can modify the styles directly by modifying the styles declared in ```dist/MarkdownEditor.js```. The pre-existing styles assume that you are using Bootstrap and Font Awesome.
+
+## Styling<a name="styling"></a>
+```<MarkdownEditor />``` is styled using React's inline styling and can be styled by supplying a ```styles``` prop. The following keys are used to style each component, below are their default values:
+
+	- styleMarkdownEditorHeader : 
+		- display: 'flex'
+		- flexDirection: 'column'
+		- borderBottom: '1px solid #ddd'
+		- marginLeft: '0px'
+		- marginRight: '0px'
+		- minHeight: '50px'
+		- justifyContent: 'center'
+		- position: 'relative'
+	- styleMarkdownEditorContainer :
+		- display: 'flex'
+		- flexDirection: 'column'
+		- marginTop: '2px'
+		- paddingTop: '10px'
+		- border: '1px solid #ddd'
+		- backgroundColor: '#f7f7f7'
+	- styleMarkdownMenu :
+		- margin: '5px 0'
+		- flex: '1'
+		- display: 'flex'
+		- position: 'absolute'
+		- right: '20px'
+		- top: '10px'
+	- styleMarkdownTextArea : 
+		- height: '90%'
+		- width: '100%'
+		- padding: '30px 10px'
+		- border: 'none'
+	- styleMarkdownPreviewArea : 
+		- height: '90%'
+		- width: '100%'
+		- padding: '30px 10px'
+		- backgroundColor: '#fff'
+		- border: 'none'
+	- styleMarkdownEditorTabs : 
+		- border: 'none'
+		- display: 'flex'
+		- justifyContent: 'flex-start'
+    - styleTab :
+		- padding: '0px 20px'
+		- cursor: 'pointer'
+		- display: 'flex'
+		- justifyContent: 'center'
+		- alignItems: 'center'
+		- height: '50px'
+	- styleActiveTab :
+		- padding: '0px 20px'
+		- cursor: 'pointer'
+		- display: 'flex'
+		- justifyContent: 'center'
+		- alignItems: 'center'
+		- height: '50px'
+		- borderLeft: '1px solid #ddd'
+		- borderRight: '1px solid #ddd'
+		- borderTop: '1px solid #ddd'
+		- backgroundColor: '#fff'
+		- borderRadius: '3px'
+
 ## TODO
 - [ ] Better solution for styles
 - [ ] Cross-browsers testing
