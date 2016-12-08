@@ -143,6 +143,6 @@ Please, if you are using this package, let me know. I am interested to know what
 
 ## Screenshots
 ![Editing tab](http://i.imgur.com/XPdJmqm.png "Editing tab")
-![Editing tab](http://imgur.com/a/WvdW2 "Editing tab with styling")
+![Editing tab with Styling](http://imgur.com/P73JIEB "Editing tab with Styling")
 ![Preview tab](http://i.imgur.com/uavBSUN.png "Preview tab")
-![Preview tab](http://imgur.com/a/WvdW2 "Preview tab with styling")
+![Preview tab with Styling](http://imgur.com/zRLI8Or "Preview tab with Styling")
