@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var Reflux = require('reflux');
 var ButtonManagerMixin = require('../mixins/ButtonManagerMixin');
 var MarkdownSelectionStore = require('../stores/MarkdownSelectionStore');
+var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
 var objectAssign = require('object-assign');
 
 var MarkdownEditorMenu = React.createClass({
