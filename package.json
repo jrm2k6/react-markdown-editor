@@ -22,7 +22,9 @@
     "email": "jeremy.dagorn@gmail.com"
   },
   "jest": {
-    "scriptPreprocessor": "./scripts/preprocessor.js",
+    "transform": {
+      ".*": "./scripts/preprocessor.js"
+    },
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
       "<rootDir>/node_modules/reflux",
@@ -48,8 +50,8 @@
   },
   "peerDependencies": {
     "react": "^15.1.0",
-    "react-dom": "^15.1.0",
-    "react-addons-test-utils": "^15.1.0"
+    "react-addons-test-utils": "^15.1.0",
+    "react-dom": "^15.1.0"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
@@ -57,7 +59,7 @@
     "expect": "^1.20.1",
     "expect-jsx": "^2.6.0",
     "jest": "^0.1.40",
-    "jest-cli": "^0.10.2",
+    "jest-cli": "^17.0.3",
     "mocha": "^2.5.3",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
