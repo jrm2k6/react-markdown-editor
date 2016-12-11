@@ -1,18 +1,18 @@
 // __tests__/markdownEditorDisableButtons-test.js
 
 jest.dontMock('../src/MarkdownEditor.js');
-jest.dontMock('../src/stores/MarkdownSelectionStore.js');
-jest.dontMock('../src/stores/MarkdownEditorStore.js');
-jest.dontMock('../src/actions/MarkdownEditorActions.js');
-jest.dontMock('../src/actions/MarkdownSelectionActions.js');
-jest.dontMock('../src/mixins/TextAreaSelectionMixin.js');
+jest.dontMock('../src/stores/MarkdownSelectionStore');
+jest.dontMock('../src/stores/MarkdownEditorStore');
+jest.dontMock('../src/actions/MarkdownEditorActions');
+jest.dontMock('../src/actions/MarkdownSelectionActions');
+jest.dontMock('../src/mixins/TextAreaSelectionMixin');
 
 var React = require('react');
 var TestUtils = require('react-addons-test-utils');
-var MarkdownEditor = require('../src/MarkdownEditor.js').MarkdownEditor;
-var MarkdownSelectionStore = require('../src/stores/MarkdownSelectionStore.js');
-var MarkdownSelectionActions = require('../src/actions/MarkdownSelectionActions.js');
-var MarkdownEditorActions = require('../src/actions/MarkdownEditorActions.js');
+var MarkdownEditor = require('../src/MarkdownEditor');
+var MarkdownSelectionStore = require('../src/stores/MarkdownSelectionStore');
+var MarkdownSelectionActions = require('../src/actions/MarkdownSelectionActions');
+var MarkdownEditorActions = require('../src/actions/MarkdownEditorActions');
 
 describe('menu buttons state', function() {
     afterEach(function() {
@@ -21,6 +21,7 @@ describe('menu buttons state', function() {
 
     it('buttons should be disabled when creating the editor', function() {
         // given
+        jest.useFakeTimers();
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
 
@@ -32,6 +33,7 @@ describe('menu buttons state', function() {
 
     it('buttons should be enabled when selection occurred the editor', function() {
         // given
+        jest.useFakeTimers();
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
@@ -48,6 +50,7 @@ describe('menu buttons state', function() {
 
     it('buttons should be enabled when selection occurred the editor', function() {
         // given
+        jest.useFakeTimers();
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
