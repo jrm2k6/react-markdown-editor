@@ -105,4 +105,4 @@ MarkdownEditorMenu.defaultProps = {
     }
 }
 
-module.exports = MarkdownEditorMenu
+module.exports = MarkdownEditorMenu;
