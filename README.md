@@ -12,7 +12,7 @@ A markdown editor using React/Reflux.
 Demo here: http://jrm2k6.github.io/react-markdown-editor/
 
 ## Installation
-``` npm install --save react-markdown-editor ```
+``` npm install --save react-markdown-editor ``` or ```yarn add react-markdown-editor```
 
 ## Features
 From the UI:
