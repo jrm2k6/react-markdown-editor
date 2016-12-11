@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prepublish": "./scripts/prepublish.sh",
-    "test": "jest --coverage"
+    "test": "./node_modules/jest-cli/bin/jest.js --coverage"
   },
   "keywords": [
     "react-component",
