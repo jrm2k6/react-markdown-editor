@@ -171,8 +171,5 @@ MarkdownEditor.defaultProps = {
         }
       }
 }
-module.exports = {
-  MarkdownEditor: MarkdownEditor,
-  MarkdownEditorMenu: MarkdownEditorMenu,
-  MarkdownEditorTabs: MarkdownEditorTabs
-};
+
+module.exports = MarkdownEditor;
