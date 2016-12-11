@@ -37,4 +37,4 @@ MarkdownEditorPreview.defaultProps = {
     }
 }
 
-module.exports = MarkdownEditorPreview
+module.exports = MarkdownEditorPreview;

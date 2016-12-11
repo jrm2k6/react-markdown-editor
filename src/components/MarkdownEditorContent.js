@@ -57,4 +57,4 @@ MarkdownEditorContent.defaultProps = {
   }
 }
 
-module.exports = MarkdownEditorContent
+module.exports = MarkdownEditorContent;

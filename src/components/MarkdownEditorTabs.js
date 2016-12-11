@@ -100,4 +100,4 @@ MarkdownEditorTabs.defaultProps = {
     }
 }
 
-module.exports = MarkdownEditorTabs
+module.exports = MarkdownEditorTabs;
