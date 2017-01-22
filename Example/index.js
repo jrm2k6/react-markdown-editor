@@ -11,4 +11,20 @@ $(document).ready(function() {
     document.getElementById('react-container-2'));
   ReactDOM.render(React.createElement(ExampleWithOnChangeContent),
     document.getElementById('react-container-3'));
+  ReactDOM.render(React.createElement(MarkdownEditor, {
+    initialContent: 'My initial content', iconsSet: 'font-awesome',
+    styles: {
+      styleMarkdownEditorHeader: {
+        backgroundColor: '#1b748f',
+        color: 'white'
+      },
+      styleMarkdownMenu: {
+        color: 'black'
+      },
+      styleActiveTab: {
+        color: 'black'
+      }
+    }
+  }),
+    document.getElementById('react-container-4'));
 });
