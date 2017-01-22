@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-./node_modules/webpack/bin/webpack.js -p
+NODE_ENV=production ./node_modules/webpack/bin/webpack.js -p

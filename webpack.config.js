@@ -4,6 +4,24 @@ var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
 
+var isProd = (process.env.NODE_ENV === 'production');
+
+function getPlugins() {
+  var plugins = [];
+
+  plugins.push(new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': process.env.NODE_ENV
+    }
+  }));
+
+  if (isProd) {
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
+  }
+
+  return plugins;
+}
+
 var config = {
 
   debug: true,
@@ -13,6 +31,8 @@ var config = {
   entry: {
     'bundle': ['./index.js']
   },
+
+  plugins: getPlugins(),
 
   output: {
     path: path.resolve(__dirname, 'dist'),
