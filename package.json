@@ -46,7 +46,8 @@
     "react": "^15.1.0",
     "react-addons-test-utils": "^15.1.0",
     "react-dom": "^15.1.0",
-    "reflux": "^0.4.1"
+    "reflux": "^0.4.1",
+    "webpack": "^1.14.0"
   },
   "peerDependencies": {
     "react": "^15.1.0",
@@ -63,6 +64,12 @@
     "mocha": "^2.5.3",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-tools": "^0.13.3"
+    "react-tools": "^0.13.3",
+    "babel-cli": "^6.2.0",
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-transform-react-jsx": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18"
   }
 }
