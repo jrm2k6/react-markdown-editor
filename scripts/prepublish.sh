@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-jsx --no-cache-dir src dist
+NODE_ENV=production ./node_modules/webpack/bin/webpack.js -p
