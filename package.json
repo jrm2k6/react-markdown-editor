@@ -1,6 +1,6 @@
 {
   "name": "react-markdown-editor",
-  "version": "0.4.0",
+  "version": "0.5.0-beta",
   "description": "A markdown editor with preview, implemented with React.js and Reflux",
   "main": "index.js",
   "scripts": {
