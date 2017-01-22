@@ -51,7 +51,7 @@ React.render(<TestComponent />, document.getElementById('content'));
 
 Optional props:
 
-   - ```onContentChange```, function to be called on each content change (as the property name says!)
+   - ```onContentChange```, function to be called on each content change, getting the new content as an argument (as the property name says!)
    - ```styles```, see [Styling](#styling) below
 
 You can also listen to content changes on the editor. If you are using Reflux, by listening to the changes on ```MarkdownEditorContentStore```.
@@ -122,7 +122,6 @@ You can modify the styles directly by modifying the styles declared in ```dist/M
 		- borderRadius: '3px'
 
 ## TODO
-- [ ] Better solution for styles
 - [ ] Cross-browsers testing
 - [ ] Move to Redux
 
@@ -143,6 +142,5 @@ Please, if you are using this package, let me know. I am interested to know what
 
 ## Screenshots
 ![Editing tab](http://i.imgur.com/XPdJmqm.png "Editing tab")
-![Editing tab with Styling](http://imgur.com/P73JIEB.png "Editing tab with Styling")
+![Editing tab with custom styles](http://imgur.com/a/pLuLd "Editing tab with custom styles")
 ![Preview tab](http://i.imgur.com/uavBSUN.png "Preview tab")
-![Preview tab with Styling](http://imgur.com/zRLI8Or.png "Preview tab with Styling")
