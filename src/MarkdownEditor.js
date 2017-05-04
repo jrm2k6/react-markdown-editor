@@ -47,7 +47,7 @@ var MarkdownEditor = React.createClass({
     if (this.state.inEditMode) {
       divContent = <MarkdownEditorContent styles={{styleMarkdownTextArea: this.props.styles.styleMarkdownTextArea}} 
                                           content={this.state.content} onChangeHandler={this.onChangeHandler}/>;
-      if (this.props.editorTabs != false){
+      if (this.props.editorTabs !== false){
           editorMenu = <MarkdownEditorMenu styles={{styleMarkdownMenu: this.props.styles.styleMarkdownMenu}}
                                             iconsSet={this.props.iconsSet}/>;
       }
