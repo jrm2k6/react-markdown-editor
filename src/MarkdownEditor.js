@@ -32,7 +32,8 @@ var MarkdownEditor = React.createClass({
   propTypes: {
     initialContent: React.PropTypes.string.isRequired,
     iconsSet: React.PropTypes.oneOf(['font-awesome', 'materialize-ui']).isRequired,
-    onContentChange: React.PropTypes.func
+    onContentChange: React.PropTypes.func,
+    editorTabs: React.PropTypes.bool
   },
 
   getInitialState: function() {
@@ -46,8 +47,10 @@ var MarkdownEditor = React.createClass({
     if (this.state.inEditMode) {
       divContent = <MarkdownEditorContent styles={{styleMarkdownTextArea: this.props.styles.styleMarkdownTextArea}} 
                                           content={this.state.content} onChangeHandler={this.onChangeHandler}/>;
-      editorMenu = <MarkdownEditorMenu styles={{styleMarkdownMenu: this.props.styles.styleMarkdownMenu}}
-                                      iconsSet={this.props.iconsSet}/>;
+      if (this.props.editorTabs !== false){
+          editorMenu = <MarkdownEditorMenu styles={{styleMarkdownMenu: this.props.styles.styleMarkdownMenu}}
+                                            iconsSet={this.props.iconsSet}/>;
+      }
     } else {
       divContent = <MarkdownEditorPreview styles={{styleMarkdownPreviewArea: this.props.styles.styleMarkdownPreviewArea}} 
                                           content={this.state.content} />;
