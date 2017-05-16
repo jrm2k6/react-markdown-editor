@@ -106,8 +106,7 @@ var MarkdownEditor = React.createClass({
     }
   },
 
-  updateText: function(text, selection, actionType) {
-    debugger;
+  updateText: function(text, selection, actionType) {    
     var token = this.generateMarkdownToken(actionType);
     var beforeSelectionContent = text.slice(0, selection.selectionStart);
     var afterSelectionContent = text.slice(selection.selectionEnd, text.length);
