@@ -37,7 +37,8 @@ var MarkdownEditor = React.createClass({
   },
 
   getInitialState: function() {
-    return {content: this.props.initialContent, inEditMode: true};
+    var uniqueInstanceRef = Math.random().toString(36).substring(7)
+    return {content: this.props.initialContent, inEditMode: true, instanceRef: uniqueInstanceRef};
   },
 
   render: function() {
@@ -48,8 +49,9 @@ var MarkdownEditor = React.createClass({
       divContent = <MarkdownEditorContent styles={{styleMarkdownTextArea: this.props.styles.styleMarkdownTextArea}} 
                                           content={this.state.content} onChangeHandler={this.onChangeHandler}/>;
       if (this.props.editorTabs !== false){
+       
           editorMenu = <MarkdownEditorMenu styles={{styleMarkdownMenu: this.props.styles.styleMarkdownMenu}}
-                                            iconsSet={this.props.iconsSet}/>;
+                                            iconsSet={this.props.iconsSet} instanceRef={this.state.instanceRef}/>;
       }
     } else {
       divContent = <MarkdownEditorPreview styles={{styleMarkdownPreviewArea: this.props.styles.styleMarkdownPreviewArea}} 
@@ -92,7 +94,7 @@ var MarkdownEditor = React.createClass({
   handleMarkdowEditorStoreUpdated: function(markdownEditorStoreState) {
     var currentSelection = markdownEditorStoreState.currentSelection;
 
-    if (currentSelection != null) {
+    if (currentSelection != null && markdownEditorStoreState.instanceRef === this.state.instanceRef) {
       this.updateText(this.state.content, currentSelection, markdownEditorStoreState.action);
     }
   },
@@ -104,7 +106,7 @@ var MarkdownEditor = React.createClass({
     }
   },
 
-  updateText: function(text, selection, actionType) {
+  updateText: function(text, selection, actionType) {    
     var token = this.generateMarkdownToken(actionType);
     var beforeSelectionContent = text.slice(0, selection.selectionStart);
     var afterSelectionContent = text.slice(selection.selectionEnd, text.length);

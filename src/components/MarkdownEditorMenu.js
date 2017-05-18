@@ -59,36 +59,36 @@ var MarkdownEditorMenu = React.createClass({
     }
   },
 
-  handleBoldButtonClick: function() {
-    MarkdownEditorActions.makeBold();
+  handleBoldButtonClick: function() {   
+    MarkdownEditorActions.makeBold(this.props.instanceRef);
   },
 
   handleImageButtonClick: function() {
-    MarkdownEditorActions.makeImage();
+    MarkdownEditorActions.makeImage(this.props.instanceRef);
   },
 
   handleItalicButtonClick: function() {
-    MarkdownEditorActions.makeItalic();
+    MarkdownEditorActions.makeItalic(this.props.instanceRef);
   },
 
   handleUnderlineButtonClick: function() {
-    MarkdownEditorActions.makeUnderline();
+    MarkdownEditorActions.makeUnderline(this.props.instanceRef);
   },
 
   handleHeaderButtonClick: function() {
-    MarkdownEditorActions.makeHeader();
+    MarkdownEditorActions.makeHeader(this.props.instanceRef);
   },
 
   handleSubHeaderButtonClick: function() {
-    MarkdownEditorActions.makeSubHeader();
+    MarkdownEditorActions.makeSubHeader(this.props.instanceRef);
   },
 
   handleLinkButtonClick: function() {
-    MarkdownEditorActions.makeLink();
+    MarkdownEditorActions.makeLink(this.props.instanceRef);
   },
 
   handleListButtonClick: function() {
-    MarkdownEditorActions.makeList();
+    MarkdownEditorActions.makeList(this.props.instanceRef);
   }
 });
 

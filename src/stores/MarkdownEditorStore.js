@@ -4,6 +4,7 @@ var MarkdownSelectionActions = require('../actions/MarkdownSelectionActions');
 
 var MarkdownEditorStore = Reflux.createStore({
   init: function() {
+   
     this.currentSelection = null;
     this.listenTo(MarkdownEditorActions.makeBold, this.handleMakeBold);
     this.listenTo(MarkdownEditorActions.makeItalic, this.handleMakeItalic);
@@ -17,36 +18,36 @@ var MarkdownEditorStore = Reflux.createStore({
     this.listenTo(MarkdownEditorActions.setSelection, this.handleSetSelection);
   },
 
-  handleMakeBold: function() {
-    this.trigger({action: 'bold', currentSelection: this.currentSelection});
+  handleMakeBold: function(instanceRef) {    
+    this.trigger({action: 'bold', currentSelection: this.currentSelection, instanceRef: instanceRef});
   },
 
-  handleMakeItalic: function() {
-    this.trigger({action: 'italic', currentSelection: this.currentSelection});
+  handleMakeItalic: function(instanceRef) {
+    this.trigger({action: 'italic', currentSelection: this.currentSelection, instanceRef: instanceRef});
   },
 
-  handleMakeLink: function() {
-    this.trigger({action: 'link', currentSelection: this.currentSelection});
+  handleMakeLink: function(instanceRef) {
+    this.trigger({action: 'link', currentSelection: this.currentSelection, instanceRef: instanceRef});
   },
 
-  handleMakeUnderline: function() {
-    this.trigger({action: 'underline', currentSelection: this.currentSelection});
+  handleMakeUnderline: function(instanceRef) {
+    this.trigger({action: 'underline', currentSelection: this.currentSelection, instanceRef: instanceRef});
   },
 
-  handleMakeHeader: function() {
-    this.trigger({action: 'header', currentSelection: this.currentSelection});
+  handleMakeHeader: function(instanceRef) {
+    this.trigger({action: 'header', currentSelection: this.currentSelection, instanceRef: instanceRef});
   },
 
-  handleMakeSubHeader: function() {
-    this.trigger({action: 'subheader', currentSelection: this.currentSelection});
+  handleMakeSubHeader: function(instanceRef) {
+    this.trigger({action: 'subheader', currentSelection: this.currentSelection, instanceRef: instanceRef});
   },
 
-  handleMakeList: function() {
-    this.trigger({action: 'list', currentSelection: this.currentSelection});
+  handleMakeList: function(instanceRef) {
+    this.trigger({action: 'list', currentSelection: this.currentSelection, instanceRef: instanceRef});
   },
 
-  handleMakeImage: function() {
-    this.trigger({action: 'image', currentSelection: this.currentSelection});
+  handleMakeImage: function(instanceRef) {
+    this.trigger({action: 'image', currentSelection: this.currentSelection, instanceRef: instanceRef});
   },
 
   handleClearSelection: function() {
