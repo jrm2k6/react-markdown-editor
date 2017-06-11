@@ -1,8 +1,9 @@
 {
   "name": "react-markdown-editor",
-  "version": "0.6.0-beta",
+  "version": "0.6.1-beta",
   "description": "A markdown editor with preview, implemented with React.js and Reflux",
-  "main": "index.js",
+  "main": "dist/react-markdown-editor.js",
+  "module": "./index.js",
   "scripts": {
     "prepublish": "./scripts/prepublish.sh",
     "test": "./node_modules/jest-cli/bin/jest.js --coverage"
@@ -43,11 +44,7 @@
   "dependencies": {
     "markdown": "^0.5.0",
     "object-assign": "^4.1.0",
-    "react": "^15.1.0",
-    "react-addons-test-utils": "^15.1.0",
-    "react-dom": "^15.1.0",
-    "reflux": "^0.4.1",
-    "webpack": "^1.14.0"
+    "reflux": "^0.4.1"
   },
   "peerDependencies": {
     "react": "^15.1.0",
@@ -70,6 +67,7 @@
     "babel-loader": "^6.2.0",
     "babel-plugin-transform-react-jsx": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
-    "babel-preset-react": "^6.1.18"
+    "babel-preset-react": "^6.1.18",
+    "webpack": "2.6.1"
   }
 }

@@ -14,7 +14,7 @@ function getPlugins() {
       'NODE_ENV': process.env.NODE_ENV
     }
   }));
-
+  
   if (isProd) {
     plugins.push(new webpack.optimize.UglifyJsPlugin());
   }
@@ -23,20 +23,15 @@ function getPlugins() {
 }
 
 var config = {
-
-  debug: true,
-
   devtool: 'source-map',
 
-  entry: {
-    'bundle': ['./index.js']
-  },
-
-  plugins: getPlugins(),
+  entry: './index.js',
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: 'react-markdown-editor.js',
+    libraryTarget: 'umd',
+    library: 'ReactMarkdownEditor'
   },
 
   module: {
@@ -50,7 +45,23 @@ var config = {
     }]
   },
 
-  plugins: [],
+  externals: {
+    'react': {
+      commonjs: "react",
+      commonjs2: "react",
+      amd: "react",
+      root: "_"
+    },
+
+    'react-dom': {
+      commonjs: "react-dom",
+      commonjs2: "react-dom",
+      amd: "react-dom",
+      root: "_"
+    }
+  },
+
+  plugins: getPlugins(),
 
 };
 

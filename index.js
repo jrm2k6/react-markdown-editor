@@ -1,4 +1,4 @@
 module.exports = {
-	MarkdownEditor: require('./dist/MarkdownEditor'),
-	MarkdownEditorContentStore: require('./dist/stores/MarkdownEditorContentStore')
+	MarkdownEditor: require('./src/MarkdownEditor'),
+	MarkdownEditorContentStore: require('./src/stores/MarkdownEditorContentStore')
 }
