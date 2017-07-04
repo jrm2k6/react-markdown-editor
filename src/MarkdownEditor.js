@@ -44,17 +44,17 @@ var MarkdownEditor = React.createClass({
   render: function() {
     var divContent;
     var editorMenu;
-   
+
     if (this.state.inEditMode) {
-      divContent = <MarkdownEditorContent styles={{styleMarkdownTextArea: this.props.styles.styleMarkdownTextArea}} 
+      divContent = <MarkdownEditorContent styles={{styleMarkdownTextArea: this.props.styles.styleMarkdownTextArea}}
                                           content={this.state.content} onChangeHandler={this.onChangeHandler}/>;
       if (this.props.editorTabs !== false){
-       
+
           editorMenu = <MarkdownEditorMenu styles={{styleMarkdownMenu: this.props.styles.styleMarkdownMenu}}
                                             iconsSet={this.props.iconsSet} instanceRef={this.state.instanceRef}/>;
       }
     } else {
-      divContent = <MarkdownEditorPreview styles={{styleMarkdownPreviewArea: this.props.styles.styleMarkdownPreviewArea}} 
+      divContent = <MarkdownEditorPreview styles={{styleMarkdownPreviewArea: this.props.styles.styleMarkdownPreviewArea}}
                                           content={this.state.content} />;
       editorMenu = null;
     }
@@ -69,8 +69,8 @@ var MarkdownEditor = React.createClass({
       <div style={styleMarkdownEditorContainer}>
         <div style={styleMarkdownEditorHeader} className='md-editor-header'>
           {editorMenu}
-          <MarkdownEditorTabs styles={{ styleMarkdownEditorTabs: this.props.styles.styleMarkdownEditorTabs, 
-                                        styleTab: this.props.styles.styleTab, 
+          <MarkdownEditorTabs styles={{ styleMarkdownEditorTabs: this.props.styles.styleMarkdownEditorTabs,
+                                        styleTab: this.props.styles.styleTab,
                                         styleActiveTab: this.props.styles.styleActiveTab}} />
         </div>
         {divContent}
@@ -106,7 +106,7 @@ var MarkdownEditor = React.createClass({
     }
   },
 
-  updateText: function(text, selection, actionType) {    
+  updateText: function(text, selection, actionType) {
     var token = this.generateMarkdownToken(actionType);
     var beforeSelectionContent = text.slice(0, selection.selectionStart);
     var afterSelectionContent = text.slice(selection.selectionEnd, text.length);
@@ -114,7 +114,10 @@ var MarkdownEditor = React.createClass({
     var _updatedContent = beforeSelectionContent + updatedText + afterSelectionContent;
     PublicMarkdownEditorActions.updateText(MarkdownUtils.toMarkdown(_updatedContent));
     this.setState({content: _updatedContent});
-    this.props.onContentChange(_updatedContent);
+
+    if (this.props.onContentChange) {
+      this.props.onContentChange(_updatedContent);
+    }
   },
 
   generateMarkdownToken: function(actionType) {
