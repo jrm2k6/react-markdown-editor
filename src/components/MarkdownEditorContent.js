@@ -8,7 +8,8 @@ var objectAssign = require('object-assign');
 var MarkdownEditorContent = React.createClass({
   propTypes: {
     content: React.PropTypes.string.isRequired,
-    onChangeHandler: React.PropTypes.func.isRequired
+    onChangeHandler: React.PropTypes.func.isRequired,
+    className: React.PropTypes.string     // textareaClass
   },
 
   mixins: [TextAreaSelectionMixin],
@@ -20,7 +21,7 @@ var MarkdownEditorContent = React.createClass({
     return (
       <textarea
         ref='editor'
-        className='md-editor-textarea'
+        className={this.props.className || 'md-editor-textarea'}
         style={styleMarkdownTextArea}
         onChange={this.onChange}
         onClick={this.clearSelection}
