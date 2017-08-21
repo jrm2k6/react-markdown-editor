@@ -14,7 +14,7 @@ function getPlugins() {
       'NODE_ENV': process.env.NODE_ENV
     }
   }));
-  
+
   if (isProd) {
     plugins.push(new webpack.optimize.UglifyJsPlugin());
   }
@@ -27,6 +27,10 @@ var config = {
 
   entry: './index.js',
 
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'react-markdown-editor.js',
@@ -36,7 +40,7 @@ var config = {
 
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       exclude: /(node_modules)/,
       loader: 'babel-loader',
       query: {

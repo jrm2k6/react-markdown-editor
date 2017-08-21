@@ -4,9 +4,10 @@
   "description": "A markdown editor with preview, implemented with React.js and Reflux",
   "main": "dist/react-markdown-editor.js",
   "module": "./index.js",
+  "types": "./src/index.d.ts",
   "scripts": {
     "prepublish": "./scripts/prepublish.sh",
-    "test": "./node_modules/jest-cli/bin/jest.js --coverage"
+    "test": "node-esml ./node_modules/jest-cli/bin/jest.js --coverage"
   },
   "keywords": [
     "react-component",
@@ -43,7 +44,8 @@
   },
   "dependencies": {
     "markdown": "^0.5.0",
-    "object-assign": "^4.1.0",
+    "marked": "^0.3.6",
+    "object-assign": "^4.1.1",
     "reflux": "^0.4.1"
   },
   "peerDependencies": {

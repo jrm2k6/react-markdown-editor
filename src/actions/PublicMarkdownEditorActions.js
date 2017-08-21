@@ -1,7 +1,7 @@
-var Reflux = require('reflux');
+import Reflux from 'reflux'
 
 var PublicMarkdownEditorActions = Reflux.createActions([
 	'updateText'
 ]);
 
-module.exports = PublicMarkdownEditorActions;
+export default PublicMarkdownEditorActions

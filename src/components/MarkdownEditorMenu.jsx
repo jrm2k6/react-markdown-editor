@@ -1,30 +1,30 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Reflux = require('reflux');
-var ButtonManagerMixin = require('../mixins/ButtonManagerMixin');
-var MarkdownSelectionStore = require('../stores/MarkdownSelectionStore');
-var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
-var objectAssign = require('object-assign');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Reflux from 'reflux'
+import ButtonManagerMixin from '../mixins/ButtonManagerMixin'
+import MarkdownSelectionStore from '../stores/MarkdownSelectionStore'
+import MarkdownEditorActions from '../actions/MarkdownEditorActions'
+import objectAssign from 'object-assign'
 
 var MarkdownEditorMenu = React.createClass({
   mixins: [Reflux.ListenerMixin, ButtonManagerMixin],
 
   propTypes: {
-    iconsSet: React.PropTypes.string.isRequired
+    iconsSet: React.PropTypes.string
   },
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       enabled: false
     };
   },
 
-  componentWillMount: function() {
+  componentWillMount: function () {
     this.listenTo(MarkdownSelectionStore, this.handleMarkdownSelectionStore);
     this.setIconsProvider(this.props.iconsSet);
   },
 
-  render: function() {
+  render: function () {
 
     var _disabled = (!this.state.enabled) ? 'disabled' : '';
     var boldButton = this.getBoldButton(_disabled, this.handleBoldButtonClick);
@@ -51,58 +51,58 @@ var MarkdownEditorMenu = React.createClass({
     );
   },
 
-  handleMarkdownSelectionStore: function(data) {
+  handleMarkdownSelectionStore: function (data) {
     if (data.type === 'clear') {
-      this.setState({enabled: false});
+      this.setState({ enabled: false });
     } else if (data.type === 'set') {
-      this.setState({enabled: true});
+      this.setState({ enabled: true });
     }
   },
 
-  handleBoldButtonClick: function() {   
+  handleBoldButtonClick: function () {
     MarkdownEditorActions.makeBold(this.props.instanceRef);
   },
 
-  handleImageButtonClick: function() {
+  handleImageButtonClick: function () {
     MarkdownEditorActions.makeImage(this.props.instanceRef);
   },
 
-  handleItalicButtonClick: function() {
+  handleItalicButtonClick: function () {
     MarkdownEditorActions.makeItalic(this.props.instanceRef);
   },
 
-  handleUnderlineButtonClick: function() {
+  handleUnderlineButtonClick: function () {
     MarkdownEditorActions.makeUnderline(this.props.instanceRef);
   },
 
-  handleHeaderButtonClick: function() {
+  handleHeaderButtonClick: function () {
     MarkdownEditorActions.makeHeader(this.props.instanceRef);
   },
 
-  handleSubHeaderButtonClick: function() {
+  handleSubHeaderButtonClick: function () {
     MarkdownEditorActions.makeSubHeader(this.props.instanceRef);
   },
 
-  handleLinkButtonClick: function() {
+  handleLinkButtonClick: function () {
     MarkdownEditorActions.makeLink(this.props.instanceRef);
   },
 
-  handleListButtonClick: function() {
+  handleListButtonClick: function () {
     MarkdownEditorActions.makeList(this.props.instanceRef);
   }
 });
 
 MarkdownEditorMenu.defaultProps = {
-    styles: { 
-        styleMarkdownMenu : {
-            'margin': '5px 0',
-            'flex': '1',
-            'display': 'flex',
-            'position': 'absolute',
-            'right': '20px',
-            'top': '10px'
-        }
+  styles: {
+    styleMarkdownMenu: {
+      'margin': '5px 0',
+      'flex': '1',
+      'display': 'flex',
+      'position': 'absolute',
+      'right': '20px',
+      'top': '10px'
     }
+  }
 }
 
-module.exports = MarkdownEditorMenu;
+export default MarkdownEditorMenu

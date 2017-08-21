@@ -1,30 +1,30 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Reflux = require('reflux');
-var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
-var MarkdownEditorTabsInteractionStore = require('../stores/MarkdownEditorTabsInteractionStore');
-var objectAssign = require('object-assign');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Reflux from 'reflux'
+import MarkdownEditorActions from '../actions/MarkdownEditorActions'
+import MarkdownEditorTabsInteractionStore from '../stores/MarkdownEditorTabsInteractionStore'
+import objectAssign from 'object-assign'
 
 var MarkdownEditorTabs = React.createClass({
   mixins: [Reflux.ListenerMixin],
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       activeTab: 0
     };
   },
 
-  componentWillMount: function() {
+  componentWillMount: function () {
     this.listenTo(MarkdownEditorTabsInteractionStore, this.handleMDEditorTabsInteractionStoreUpdated);
   },
 
-  handleMDEditorTabsInteractionStoreUpdated: function(storeState) {
+  handleMDEditorTabsInteractionStoreUpdated: function (storeState) {
     if (storeState.activeTab != null) {
-      this.setState({activeTab: storeState.activeTab});
+      this.setState({ activeTab: storeState.activeTab });
     }
   },
 
-  render: function() {
+  render: function () {
 
     var styleActiveTab = MarkdownEditorTabs.defaultProps.styles.styleActiveTab;
     var styleMarkdownEditorTabs = MarkdownEditorTabs.defaultProps.styles.styleMarkdownEditorTabs;
@@ -34,8 +34,8 @@ var MarkdownEditorTabs = React.createClass({
     objectAssign(styleMarkdownEditorTabs, this.props.styles.styleMarkdownEditorTabs);
     objectAssign(styleTab, this.props.styles.styleTab);
 
-    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleActiveTab')) {
-        Object.assign(styleActiveTab, this.props.styles.styleActiveTab);
+    if (this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleActiveTab')) {
+      Object.assign(styleActiveTab, this.props.styles.styleActiveTab);
     }
 
     var editorTabStyle;
@@ -64,40 +64,40 @@ var MarkdownEditorTabs = React.createClass({
     );
   },
 
-  handleClick: function(actionName) {
+  handleClick: function (actionName) {
     MarkdownEditorActions[actionName]();
   }
 });
 
 MarkdownEditorTabs.defaultProps = {
-    styles : {
-        styleMarkdownEditorTabs : {
-            'border': 'none',
-            'display': 'flex',
-            'justifyContent': 'flex-start'
-        },
-        styleTab : {
-            padding: '0px 20px',
-            cursor: 'pointer',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '50px'
-         },
-         styleActiveTab : {
-            padding: '0px 20px',
-            cursor: 'pointer',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '50px',
-            borderLeft: '1px solid #ddd',
-            borderRight: '1px solid #ddd',
-            borderTop: '1px solid #ddd',
-            backgroundColor: '#fff',
-            borderRadius: '3px'
-        }
+  styles: {
+    styleMarkdownEditorTabs: {
+      'border': 'none',
+      'display': 'flex',
+      'justifyContent': 'flex-start'
+    },
+    styleTab: {
+      padding: '0px 20px',
+      cursor: 'pointer',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '50px'
+    },
+    styleActiveTab: {
+      padding: '0px 20px',
+      cursor: 'pointer',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '50px',
+      borderLeft: '1px solid #ddd',
+      borderRight: '1px solid #ddd',
+      borderTop: '1px solid #ddd',
+      backgroundColor: '#fff',
+      borderRadius: '3px'
     }
+  }
 }
 
-module.exports = MarkdownEditorTabs;
+export default MarkdownEditorTabs

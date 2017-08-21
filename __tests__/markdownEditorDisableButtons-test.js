@@ -1,6 +1,6 @@
 // __tests__/markdownEditorDisableButtons-test.js
 
-jest.dontMock('../src/MarkdownEditor.js');
+jest.dontMock('../src/MarkdownEditor');
 jest.dontMock('../src/stores/MarkdownSelectionStore');
 jest.dontMock('../src/stores/MarkdownEditorStore');
 jest.dontMock('../src/actions/MarkdownEditorActions');
@@ -14,27 +14,27 @@ var MarkdownSelectionStore = require('../src/stores/MarkdownSelectionStore');
 var MarkdownSelectionActions = require('../src/actions/MarkdownSelectionActions');
 var MarkdownEditorActions = require('../src/actions/MarkdownEditorActions');
 
-describe('menu buttons state', function() {
-    afterEach(function() {
+describe('menu buttons state', function () {
+    afterEach(function () {
         jest.runAllTimers();
     });
 
-    it('buttons should be disabled when creating the editor', function() {
+    it('buttons should be disabled when creating the editor', function () {
         // given
         jest.useFakeTimers();
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome" />);
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
 
         // then
-        btns.forEach(function(btn) {
+        btns.forEach(function (btn) {
             expect(btn.props.disabled).toEqual('disabled');
         });
     });
 
-    it('buttons should be enabled when selection occurred the editor', function() {
+    it('buttons should be enabled when selection occurred the editor', function () {
         // given
         jest.useFakeTimers();
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome" />);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
 
@@ -43,15 +43,15 @@ describe('menu buttons state', function() {
         jest.runAllTimers();
 
         // then
-        btns.forEach(function(btn) {
+        btns.forEach(function (btn) {
             expect(btns[0].props.disabled).toEqual('');
         });
     });
 
-    it('buttons should be enabled when selection occurred the editor', function() {
+    it('buttons should be enabled when selection occurred the editor', function () {
         // given
         jest.useFakeTimers();
-        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
+        var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome" />);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var btns = TestUtils.scryRenderedDOMComponentsWithClass(editor, "btn");
 
@@ -62,7 +62,7 @@ describe('menu buttons state', function() {
         jest.runAllTimers();
 
         // then
-        btns.forEach(function(btn) {
+        btns.forEach(function (btn) {
             expect(btns[0].props.disabled).toEqual('disabled');
         });
     });

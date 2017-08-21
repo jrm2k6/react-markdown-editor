@@ -1,7 +1,3 @@
-var toMarkdown =  function(text) {
+export function toMarkdown(text) {
   return text.replace(/[\n\r]/g, '  \n');
-};
-
-module.exports = {
-  toMarkdown: toMarkdown
-};
+}
