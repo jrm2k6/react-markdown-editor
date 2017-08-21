@@ -7,7 +7,7 @@
   "types": "./src/index.d.ts",
   "scripts": {
     "prepublish": "./scripts/prepublish.sh",
-    "test": "./node_modules/jest-cli/bin/jest.js --coverage"
+    "test": "node-esml ./node_modules/jest-cli/bin/jest.js --coverage"
   },
   "keywords": [
     "react-component",

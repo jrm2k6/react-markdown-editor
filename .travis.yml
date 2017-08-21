@@ -8,6 +8,7 @@ addons:
 
 before_script:
   - npm install yarn
+  - npm install -g node-es-module-loader
   - yarn install
 
 after_script:
