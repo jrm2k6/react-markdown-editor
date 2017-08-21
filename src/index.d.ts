@@ -1,6 +1,5 @@
-/// <reference types="react" />
-import { Component } from "react";
-export default class MarkdownEditor extends Component<{
+import React from 'react';
+export default class MarkdownEditor extends React.Component<{
 	initialContent: string
 	iconsSet: 'materialize-ui' | 'font-awesome'
 	onContentChange?: (content: string) => void
