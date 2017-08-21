@@ -1,31 +1,27 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Reflux = require('reflux');
-var MarkdownEditorActions = require('./actions/MarkdownEditorActions');
-var PublicMarkdownEditorActions = require('./actions/PublicMarkdownEditorActions');
-var MarkdownSelectionActions = require('./actions/MarkdownSelectionActions');
-var TextAreaSelectionMixin = require('./mixins/TextAreaSelectionMixin');
-var ButtonManagerMixin = require('./mixins/ButtonManagerMixin');
-var MarkdownEditorStore = require('./stores/MarkdownEditorStore');
-var MarkdownSelectionStore = require('./stores/MarkdownSelectionStore');
-var MarkdownEditorTabsInteractionStore = require('./stores/MarkdownEditorTabsInteractionStore');
-var MarkdownTokenFactory = require('./utils/MarkdownTokenFactory');
-var MarkdownUtils = require('./utils/MarkdownUtils');
-var MarkdownEditorMenu = require('./components/MarkdownEditorMenu');
-var MarkdownEditorTabs = require('./components/MarkdownEditorTabs');
-var MarkdownEditorContent = require('./components/MarkdownEditorContent');
-var MarkdownEditorPreview = require('./components/MarkdownEditorPreview');
-var objectAssign = require('object-assign');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Reflux from 'reflux'
+import MarkdownEditorActions from './actions/MarkdownEditorActions'
+import PublicMarkdownEditorActions from './actions/PublicMarkdownEditorActions'
+import MarkdownSelectionActions from './actions/MarkdownSelectionActions'
+import TextAreaSelectionMixin from './mixins/TextAreaSelectionMixin'
+import ButtonManagerMixin from './mixins/ButtonManagerMixin'
+import MarkdownEditorStore from './stores/MarkdownEditorStore'
+import MarkdownSelectionStore from './stores/MarkdownSelectionStore'
+import MarkdownEditorTabsInteractionStore from './stores/MarkdownEditorTabsInteractionStore'
+import {
+  NullMarkdownToken, RegularMarkdownToken, HeaderMarkdownToken,
+  SubHeaderMarkdownToken, UrlMarkdownToken, ListMarkdownToken,
+  ImageMarkdownToken
+} from './utils/MarkdownTokenFactory'
+import MarkdownUtils from './utils/MarkdownUtils'
+import MarkdownEditorMenu from './components/MarkdownEditorMenu'
+import MarkdownEditorTabs from './components/MarkdownEditorTabs'
+import MarkdownEditorContent from './components/MarkdownEditorContent'
+import MarkdownEditorPreview from './components/MarkdownEditorPreview'
+import objectAssign from 'object-assign'
+import DefautStyle from './style/EditorStyle'
 
-var NullMarkdownToken = MarkdownTokenFactory.NullMarkdownToken;
-var RegularMarkdownToken = MarkdownTokenFactory.RegularMarkdownToken;
-var HeaderMarkdownToken = MarkdownTokenFactory.HeaderMarkdownToken;
-var SubHeaderMarkdownToken = MarkdownTokenFactory.SubHeaderMarkdownToken;
-var UrlMarkdownToken = MarkdownTokenFactory.UrlMarkdownToken;
-var ListMarkdownToken = MarkdownTokenFactory.ListMarkdownToken;
-var ImageMarkdownToken = MarkdownTokenFactory.ImageMarkdownToken;
-
-var DefautStyle = require('./style/EditorStyle');
 var MarkdownEditor = React.createClass({
   mixins: [Reflux.ListenerMixin],
 
@@ -160,5 +156,4 @@ var MarkdownEditor = React.createClass({
 MarkdownEditor.defaultProps = {
   styles: DefautStyle
 }
-
-module.exports = MarkdownEditor;
+export default MarkdownEditor

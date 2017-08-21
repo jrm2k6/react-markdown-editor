@@ -1,10 +1,10 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Reflux = require('reflux');
-var ButtonManagerMixin = require('../mixins/ButtonManagerMixin');
-var MarkdownSelectionStore = require('../stores/MarkdownSelectionStore');
-var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
-var objectAssign = require('object-assign');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Reflux from 'reflux'
+import ButtonManagerMixin from '../mixins/ButtonManagerMixin'
+import MarkdownSelectionStore from '../stores/MarkdownSelectionStore'
+import MarkdownEditorActions from '../actions/MarkdownEditorActions'
+import objectAssign from 'object-assign'
 
 var MarkdownEditorMenu = React.createClass({
   mixins: [Reflux.ListenerMixin, ButtonManagerMixin],
@@ -105,4 +105,4 @@ MarkdownEditorMenu.defaultProps = {
   }
 }
 
-module.exports = MarkdownEditorMenu;
+export default MarkdownEditorMenu

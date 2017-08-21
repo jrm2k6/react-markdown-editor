@@ -1,8 +1,8 @@
-var Reflux = require('reflux');
+import Reflux from 'reflux'
 
 var MarkdownSelectionActions = Reflux.createActions([
 	'selectionCleared',
 	'selectionSet'
 ]);
 
-module.exports = MarkdownSelectionActions;
+export default MarkdownSelectionActions

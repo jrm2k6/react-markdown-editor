@@ -1,18 +1,18 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 var ButtonManagerMixin = {
   iconsProviderName: null,
 
-  setIconsProvider: function(name) {
+  setIconsProvider: function (name) {
     this.iconsProviderName = name;
   },
 
-  isFontAwesome: function() {
+  isFontAwesome: function () {
     return this.iconsProviderName === 'font-awesome';
   },
 
-  getStyleMarkdownBtn: function() {
+  getStyleMarkdownBtn: function () {
     return {
       'flex': '1',
       'maxWidth': '50px',
@@ -28,7 +28,7 @@ var ButtonManagerMixin = {
     };
   },
 
-  getBoldButton: function(isDisabled, onClickHandler) {
+  getBoldButton: function (isDisabled, onClickHandler) {
     var _style = this.getStyleMarkdownBtn();
     if (this.isFontAwesome()) {
       return this.getButtonFontAwesomeIcon(isDisabled, onClickHandler, _style, 'fa-bold', 'bold-btn');
@@ -37,7 +37,7 @@ var ButtonManagerMixin = {
     }
   },
 
-  getButtonMaterializeIcon: function(isDisabled, onClickHandler, styleBtn, iconName, containerClassName) {
+  getButtonMaterializeIcon: function (isDisabled, onClickHandler, styleBtn, iconName, containerClassName) {
     return (
       <div role='button' className={containerClassName} style={styleBtn} disabled={isDisabled} onClick={onClickHandler}>
         <i className='material-icons'>{iconName}</i>
@@ -45,7 +45,7 @@ var ButtonManagerMixin = {
     );
   },
 
-  getButtonFontAwesomeIcon: function(isDisabled, onClickHandler, styleBtn, iconName, containerClassName) {
+  getButtonFontAwesomeIcon: function (isDisabled, onClickHandler, styleBtn, iconName, containerClassName) {
     var _className = 'fa ' + iconName;
     return (
       <div role='button' className={containerClassName} style={styleBtn} disabled={isDisabled} onClick={onClickHandler}>
@@ -54,7 +54,7 @@ var ButtonManagerMixin = {
     );
   },
 
-  getButtonWithoutIcon: function(isDisabled, onClickHandler, additionalClassName, textBtn) {
+  getButtonWithoutIcon: function (isDisabled, onClickHandler, additionalClassName, textBtn) {
     var styleBtn = {
       'display': 'flex',
       'minWidth': '50px',
@@ -77,7 +77,7 @@ var ButtonManagerMixin = {
     );
   },
 
-  getItalicButton: function(isDisabled, onClickHandler) {
+  getItalicButton: function (isDisabled, onClickHandler) {
     if (this.isFontAwesome()) {
       var _style = this.getStyleMarkdownBtn();
       return this.getButtonFontAwesomeIcon(isDisabled, onClickHandler, _style, 'fa-italic', 'italic-btn');
@@ -87,7 +87,7 @@ var ButtonManagerMixin = {
     }
   },
 
-  getMakeListButton: function(isDisabled, onClickHandler) {
+  getMakeListButton: function (isDisabled, onClickHandler) {
     if (this.isFontAwesome()) {
       var _style = this.getStyleMarkdownBtn();
       return this.getButtonFontAwesomeIcon(isDisabled, onClickHandler, _style, 'fa-list-ul', 'list-btn');
@@ -97,7 +97,7 @@ var ButtonManagerMixin = {
     }
   },
 
-  getImageButton: function(isDisabled, onClickHandler) {
+  getImageButton: function (isDisabled, onClickHandler) {
     if (this.isFontAwesome()) {
       var _style = this.getStyleMarkdownBtn();
       return this.getButtonFontAwesomeIcon(isDisabled, onClickHandler, _style, 'fa-file-image-o', 'insert-img-btn');
@@ -107,7 +107,7 @@ var ButtonManagerMixin = {
     }
   },
 
-  getLinkButton: function(isDisabled, onClickHandler) {
+  getLinkButton: function (isDisabled, onClickHandler) {
     if (this.isFontAwesome()) {
       var _style = this.getStyleMarkdownBtn();
       return this.getButtonFontAwesomeIcon(isDisabled, onClickHandler, _style, 'fa-link', 'insert-link-btn');
@@ -118,4 +118,4 @@ var ButtonManagerMixin = {
   }
 };
 
-module.exports = ButtonManagerMixin;
+export default ButtonManagerMixin;

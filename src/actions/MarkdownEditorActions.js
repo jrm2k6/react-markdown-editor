@@ -1,4 +1,4 @@
-var Reflux = require('reflux');
+import Reflux from 'reflux'
 
 var MarkdownEditorActions = Reflux.createActions([
 	'clearSelection',
@@ -15,4 +15,4 @@ var MarkdownEditorActions = Reflux.createActions([
 	'setSelection'
 ]);
 
-module.exports = MarkdownEditorActions;
+export default MarkdownEditorActions

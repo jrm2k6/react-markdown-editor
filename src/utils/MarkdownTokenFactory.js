@@ -1,87 +1,70 @@
-var RegularMarkdownToken = function(token, isSymetric) {
-  this.token = token;
-  this.isSymetric = isSymetric;
-};
-
-RegularMarkdownToken.prototype.applyTokenTo = function(_text) {
-  var res = this.token;
-  res += _text;
-
-  if (this.isSymetric) {
-    res += this.token;
+export class RegularMarkdownToken {
+  constructor(token, isSymetric) {
+    this.token = token;
+    this.isSymetric = isSymetric;
   }
+  applyTokenTo(_text) {
+    var res = this.token;
+    res += _text;
+    if (this.isSymetric) {
+      res += this.token;
+    }
+    return res;
+  }
+}
 
-  return res;
-};
 
-var NullMarkdownToken = function() {
-  RegularMarkdownToken.call(this, '', false);
-};
+export class NullMarkdownToken extends RegularMarkdownToken {
+  constructor() {
+    super('', false);
+  }
+  applyTokenTo(_text) {
+    return _text;
+  }
+}
 
-NullMarkdownToken.prototype = Object.create(RegularMarkdownToken.prototype);
+export class HeaderMarkdownToken extends RegularMarkdownToken {
+  constructor(_token) {
+    super(_token || '##', false)
+  }
+  applyTokenTo(_text) {
+    return '\n' + this.token + ' ' + _text + '\n';
+  }
+}
 
-NullMarkdownToken.prototype.applyTokenTo = function(_text) {
-  return _text;
-};
+export class SubHeaderMarkdownToken extends RegularMarkdownToken {
+  constructor() {
+    super('###', false);
+  }
+}
 
-var HeaderMarkdownToken = function(_token) {
-  var t = _token || '##';
-  RegularMarkdownToken.call(this, t, false);
-};
+export class UrlMarkdownToken extends RegularMarkdownToken {
+  constructor() {
+    super(null, false);
+  }
+  applyTokenTo(_text) {
+    return '[' + _text + '](' + _text + ')';
+  }
+}
 
-HeaderMarkdownToken.prototype = Object.create(RegularMarkdownToken.prototype);
+export class ListMarkdownToken extends RegularMarkdownToken {
+  constructor() {
+    super(null, false)
+  }
+  applyTokenTo(_text) {
+    var items = _text.split('\n');
+    var t = items.reduce(function (acc, item) {
+      return acc + '+ ' + item + '\n';
+    }, '\n');
+    return t + '\n';
+  }
+}
 
-HeaderMarkdownToken.prototype.applyTokenTo = function(_text) {
-  return '\n' + this.token + ' ' + _text + '\n';
-};
-
-var SubHeaderMarkdownToken = function() {
-  HeaderMarkdownToken.call(this, '###', false);
-};
-
-SubHeaderMarkdownToken.prototype = Object.create(HeaderMarkdownToken.prototype);
-
-var UrlMarkdownToken = function() {
-  RegularMarkdownToken.call(this, null, false);
-};
-
-UrlMarkdownToken.prototype = Object.create(RegularMarkdownToken.prototype);
-
-UrlMarkdownToken.prototype.applyTokenTo = function(_text) {
-  return '[' + _text + '](' + _text + ')';
-};
-
-var ListMarkdownToken = function() {
-  RegularMarkdownToken.call(this, null, false);
-};
-
-ListMarkdownToken.prototype = Object.create(RegularMarkdownToken.prototype);
-
-ListMarkdownToken.prototype.applyTokenTo = function(_text) {
-  var items = _text.split('\n');
-  var t = items.reduce(function(acc, item) {
-    return acc + '+ ' + item + '\n';
-  }, '\n');
-
-  return t + '\n';
-};
-
-var ImageMarkdownToken = function() {
-  RegularMarkdownToken.call(this, null, false);
-};
-
-ImageMarkdownToken.prototype = Object.create(RegularMarkdownToken.prototype);
-
-ImageMarkdownToken.prototype.applyTokenTo = function(_text) {
-  return '![' + _text + '](' + _text + ')';
-};
-
-module.exports = {
-  RegularMarkdownToken: RegularMarkdownToken,
-  NullMarkdownToken: NullMarkdownToken,
-  HeaderMarkdownToken: HeaderMarkdownToken,
-  SubHeaderMarkdownToken: SubHeaderMarkdownToken,
-  UrlMarkdownToken: UrlMarkdownToken,
-  ListMarkdownToken: ListMarkdownToken,
-  ImageMarkdownToken: ImageMarkdownToken
-};
+export class ImageMarkdownToken extends RegularMarkdownToken {
+  constructor() {
+    super(null, false);
+  }
+  applyTokenTo(_text) {
+    return '![' + _text + '](' + _text + ')';
+  }
+}
