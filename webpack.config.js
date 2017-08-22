@@ -31,7 +31,8 @@ var config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'react-markdown-editor.js',
     libraryTarget: 'umd',
-    library: 'ReactMarkdownEditor'
+    library: 'ReactMarkdownEditor',
+    umdNamedDefine: true
   },
 
   module: {

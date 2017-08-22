@@ -1,9 +1,8 @@
 {
   "name": "react-markdown-editor",
-  "version": "0.6.0",
+  "version": "0.6.1-rc.1",
   "description": "A markdown editor with preview, implemented with React.js and Reflux",
   "main": "dist/react-markdown-editor.js",
-  "module": "./index.js",
   "scripts": {
     "prepublish": "./scripts/prepublish.sh",
     "test": "./node_modules/jest-cli/bin/jest.js --coverage"
