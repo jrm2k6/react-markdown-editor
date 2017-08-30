@@ -1,6 +1,6 @@
 {
   "name": "react-markdown-editor",
-  "version": "0.6.1-rc.1",
+  "version": "0.6.2",
   "description": "A markdown editor with preview, implemented with React.js and Reflux",
   "main": "dist/react-markdown-editor.js",
   "scripts": {
