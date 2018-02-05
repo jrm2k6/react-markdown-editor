@@ -8,9 +8,13 @@ var objectAssign = require('object-assign');
 var MarkdownEditorTabs = React.createClass({
   mixins: [Reflux.ListenerMixin],
 
+  propTypes: {
+    editMode: React.PropTypes.bool
+  },
+
   getInitialState: function() {
     return {
-      activeTab: 0
+      activeTab: this.props.editMode ? 0 : 1
     };
   },
 

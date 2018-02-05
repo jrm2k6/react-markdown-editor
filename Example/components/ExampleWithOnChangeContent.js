@@ -16,7 +16,9 @@ var ExampleWithOnChangeContent = React.createClass({
         <MarkdownEditor
           initialContent='My initial content'
           iconsSet='materialize-ui'
-          onContentChange={this._onContentChange} />
+          onContentChange={this._onContentChange}
+          editMode
+        />
       </div>
     );
   },
