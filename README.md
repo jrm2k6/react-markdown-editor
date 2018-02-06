@@ -52,6 +52,7 @@ React.render(<TestComponent />, document.getElementById('content'));
 Optional props:
 
    - ```onContentChange```, function to be called on each content change, getting the new content as an argument (as the property name says!)
+   - ```editMode```, can choose whether to initialize markdown editor with edit mode or preview mode. `true` by default
    - ```styles```, see [Styling](#styling) below
 
 You can also listen to content changes on the editor. If you are using Reflux, by listening to the changes on ```MarkdownEditorContentStore```.
