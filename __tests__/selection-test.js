@@ -6,7 +6,7 @@ jest.dontMock('../src/mixins/TextAreaSelectionMixin');
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var TestUtils = require('react-addons-test-utils');
+var TestUtils = require('react-dom/test-utils');
 var MarkdownEditor = require('../src/MarkdownEditor');
 var MarkdownEditorStore = require('../src/stores/MarkdownEditorStore');
 var MarkdownSelectionActions = require('../src/actions/MarkdownSelectionActions');
@@ -18,7 +18,9 @@ afterEach(function() {
 
 xdescribe('text selection when editing', function() {
     it('should set selection through action after selecting', function() {
-      jest.useFakeTimers();
+        jest.useFakeTimers();
+        MarkdownEditorActions.setSelection = jest.fn();
+        
         var editor = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
         var textarea = TestUtils.findRenderedDOMComponentWithClass(editor, 'md-editor-textarea');
         var textareaNode = ReactDOM.findDOMNode(textarea);

@@ -1,6 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Reflux = require('reflux');
+var PropTypes = require('prop-types');
+var createClass = require('create-react-class');
 var Markdown = require('markdown').markdown;
 var MarkdownEditorActions = require('./actions/MarkdownEditorActions');
 var PublicMarkdownEditorActions = require('./actions/PublicMarkdownEditorActions');
@@ -26,14 +28,14 @@ var UrlMarkdownToken = MarkdownTokenFactory.UrlMarkdownToken;
 var ListMarkdownToken = MarkdownTokenFactory.ListMarkdownToken;
 var ImageMarkdownToken = MarkdownTokenFactory.ImageMarkdownToken;
 
-var MarkdownEditor = React.createClass({
+var MarkdownEditor = createClass({
   mixins: [Reflux.ListenerMixin],
 
   propTypes: {
-    initialContent: React.PropTypes.string.isRequired,
-    iconsSet: React.PropTypes.oneOf(['font-awesome', 'materialize-ui']).isRequired,
-    onContentChange: React.PropTypes.func,
-    editorTabs: React.PropTypes.bool
+    initialContent: PropTypes.string.isRequired,
+    iconsSet: PropTypes.oneOf(['font-awesome', 'materialize-ui']).isRequired,
+    onContentChange: PropTypes.func,
+    editorTabs: PropTypes.bool
   },
 
   getInitialState: function() {
@@ -60,10 +62,10 @@ var MarkdownEditor = React.createClass({
     }
 
     var styleMarkdownEditorHeader = MarkdownEditor.defaultProps.styles.styleMarkdownEditorHeader;
-    objectAssign(styleMarkdownEditorHeader, this.props.styles.styleMarkdownEditorHeader);
+    objectAssign({}, styleMarkdownEditorHeader, this.props.styles.styleMarkdownEditorHeader);
 
     var styleMarkdownEditorContainer = MarkdownEditor.defaultProps.styles.styleMarkdownEditorContainer;
-    objectAssign(styleMarkdownEditorContainer, this.props.styles.styleMarkdownEditorContainer);
+    objectAssign({}, styleMarkdownEditorContainer, this.props.styles.styleMarkdownEditorContainer);
 
     return (
       <div style={styleMarkdownEditorContainer}>

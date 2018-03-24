@@ -8,17 +8,14 @@ jest.dontMock('../src/actions/MarkdownSelectionActions');
 jest.dontMock('../src/mixins/TextAreaSelectionMixin');
 
 var React = require('react');
-var TestUtils = require('react-addons-test-utils');
+var TestUtils = require('react-dom/test-utils');
+var createRenderer = require('react-test-renderer/shallow').createRenderer;
 var MarkdownEditor = require('../src/MarkdownEditor');
 var MarkdownSelectionStore = require('../src/stores/MarkdownSelectionStore');
 var MarkdownSelectionActions = require('../src/actions/MarkdownSelectionActions');
 var MarkdownEditorActions = require('../src/actions/MarkdownEditorActions');
 
 describe('menu buttons state', function() {
-    afterEach(function() {
-        jest.runAllTimers();
-    });
-
     it('buttons should be disabled when creating the editor', function() {
         // given
         jest.useFakeTimers();

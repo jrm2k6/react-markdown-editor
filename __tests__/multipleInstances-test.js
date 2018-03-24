@@ -4,14 +4,11 @@ jest.dontMock('../src/MarkdownEditor');
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var TestUtils = require('react-addons-test-utils');
+var TestUtils = require('react-dom/test-utils');
 var MarkdownEditor = require('../src/MarkdownEditor');
 
 describe('multiple editor instances', function() {
     it('bold button applies only to the instance where it was click in', function() {
-
-        //given
-        jest.useFakeTimers();
 
         var editor1 = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome" onContentChange={(e)=>{return}}/>);
         var textarea1 = TestUtils.findRenderedDOMComponentWithClass(editor1, 'md-editor-textarea');
@@ -26,7 +23,6 @@ describe('multiple editor instances', function() {
         // when
         textareaNode1.select()        
         TestUtils.Simulate.click(btnNode1);
-        jest.runAllTimers();
 
         // then    
         expect(textareaNode1.value).toEqual('**initialContent**');
