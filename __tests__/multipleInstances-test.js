@@ -10,13 +10,13 @@ var MarkdownEditor = require('../src/MarkdownEditor');
 describe('multiple editor instances', function() {
     it('bold button applies only to the instance where it was click in', function() {
 
-        var editor1 = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome" onContentChange={(e)=>{return}}/>);
+        var editor1 = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome" onContentChange={() => {}} />);
         var textarea1 = TestUtils.findRenderedDOMComponentWithClass(editor1, 'md-editor-textarea');
         var textareaNode1 = ReactDOM.findDOMNode(textarea1);
         var btn1 = TestUtils.findRenderedDOMComponentWithClass(editor1, 'bold-btn');
         var btnNode1 = ReactDOM.findDOMNode(btn1);        
 
-        var editor2 = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome" onContentChange={(e)=>{return}}/>);   
+        var editor2 = TestUtils.renderIntoDocument(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome" onContentChange={() => {}} />);   
         var textarea2 = TestUtils.findRenderedDOMComponentWithClass(editor2, 'md-editor-textarea');
         var textareaNode2 = ReactDOM.findDOMNode(textarea2);        
         
