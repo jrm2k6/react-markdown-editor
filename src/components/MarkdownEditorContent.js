@@ -1,11 +1,14 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Reflux = require('reflux');
 var PropTypes = require('prop-types');
 var createClass = require('create-react-class');
 var MarkdownUtils = require('../utils/MarkdownUtils');
+var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
 var PublicMarkdownEditorActions = require('../actions/PublicMarkdownEditorActions');
-var TextAreaSelectionMixin = require('../mixins/TextAreaSelectionMixin');
 var objectAssign = require('object-assign');
+
+var _timerClick;
 
 var MarkdownEditorContent = createClass({
   propTypes: {
@@ -13,7 +16,75 @@ var MarkdownEditorContent = createClass({
     onChangeHandler: PropTypes.func.isRequired
   },
 
-  mixins: [TextAreaSelectionMixin],
+  mixins: [Reflux.ListenerMixin],
+
+  getInitialState: function() {
+    return {
+      canClear: true,
+    }
+  },
+
+  clearSelection: function() {
+    if (this.state.canClear) {
+      MarkdownEditorActions.clearSelection();
+    }
+  },
+
+  bindSelectEvent: function() {
+    document.getElementById('rmd-textarea').addEventListener('select', this.onSelectHandler);
+  },
+
+  componentDidMount: function() {
+    this.bindSelectEvent();
+    document.getElementById('rmd-textarea').value = this.props.content;
+  },
+
+  componentWillUpdate: function() {
+    this.unbindSelectEvent();
+  },
+
+  componentDidUpdate: function() {
+    this.bindSelectEvent();
+    document.getElementById('rmd-textarea').value = this.props.content;
+  },
+
+  unbindSelectEvent: function() {
+    document.getElementById('rmd-textarea').removeEventListener('select', this.onSelectHandler);
+  },
+
+  componentWillUnmount: function() {
+    this.unbindSelectEvent();
+  },
+
+  onSelectHandler: function(e) {
+    var _eventSource = this._getEventSource(e);
+    var _selectionStart = _eventSource.selectionStart;
+    var _selectionEnd = _eventSource.selectionEnd;
+    var _selectedText = _eventSource.value.slice(_selectionStart, _selectionEnd);
+
+    var selection = {
+      selectionStart: _selectionStart,
+      selectionEnd: _selectionEnd,
+      selectedText: _selectedText
+    };
+
+    MarkdownEditorActions.setSelection(selection);
+    this._preventClearSelectionAfterSelectIfNeeded(e);
+  },
+
+  _getEventSource: function(e) {
+    return e.srcElement || e.target;
+  },
+
+  _preventClearSelectionAfterSelectIfNeeded: function(e) {
+    if (e.target !== null) {
+      this.setState({canClear: false});
+      _timerClick = setTimeout(function() {
+        this.setState({canClear: true});
+        _timerClick = null;
+      }.bind(this), 100);
+    }
+  },
 
   render: function() {
     var styleMarkdownTextArea = MarkdownEditorContent.defaultProps.styles.styleMarkdownTextArea
@@ -21,7 +92,7 @@ var MarkdownEditorContent = createClass({
 
     return (
       <textarea
-        ref='editor'
+        id='rmd-textarea'
         className='md-editor-textarea'
         style={styleMarkdownTextArea}
         onChange={this.onChange}
@@ -32,20 +103,12 @@ var MarkdownEditorContent = createClass({
   },
 
   onChange: function() {
-    var content = this.refs.editor.value;
+    var content = document.getElementById('rmd-textarea').value;
     var markdownContent = MarkdownUtils.toMarkdown(content);
     PublicMarkdownEditorActions.updateText(markdownContent);
 
     this.props.onChangeHandler(content.replace(/[\n\r]/g, '\n'));
   },
-
-  componentDidMount: function() {
-    this.refs.editor.value = this.props.content;
-  },
-
-  componentDidUpdate: function() {
-    this.refs.editor.value = this.props.content;
-  }
 });
 
 MarkdownEditorContent.defaultProps = {
