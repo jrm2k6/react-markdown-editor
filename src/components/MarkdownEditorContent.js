@@ -30,30 +30,42 @@ var MarkdownEditorContent = createClass({
     }
   },
 
-  bindSelectEvent: function() {
-    document.getElementById('rmd-textarea').addEventListener('select', this.onSelectHandler);
+  bindSelectEvent: function(element) {
+    element.addEventListener('select', this.onSelectHandler);
   },
 
   componentDidMount: function() {
-    this.bindSelectEvent();
-    document.getElementById('rmd-textarea').value = this.props.content;
+    var element = this.textAreaElement;
+    if (element) {
+      this.bindSelectEvent(element);
+      element.value = this.props.content;
+    }
   },
 
   componentWillUpdate: function() {
-    this.unbindSelectEvent();
+    var element = this.textAreaElement;
+    if (element) {
+      this.unbindSelectEvent(element);
+    }
   },
 
   componentDidUpdate: function() {
-    this.bindSelectEvent();
-    document.getElementById('rmd-textarea').value = this.props.content;
+    var element = this.textAreaElement;
+    if (element) {
+      this.bindSelectEvent(element);
+      element.value = this.props.content;
+    }
   },
 
-  unbindSelectEvent: function() {
-    document.getElementById('rmd-textarea').removeEventListener('select', this.onSelectHandler);
+  unbindSelectEvent: function(element) {
+    element.removeEventListener('select', this.onSelectHandler);
   },
 
   componentWillUnmount: function() {
-    this.unbindSelectEvent();
+    var element = this.textAreaElement;
+    if (element) {
+      this.unbindSelectEvent(element);
+    }
   },
 
   onSelectHandler: function(e) {
@@ -91,7 +103,7 @@ var MarkdownEditorContent = createClass({
 
     return (
       <textarea
-        id='rmd-textarea'
+        ref={(textArea) => { this.textAreaElement = textArea; }}
         className='md-editor-textarea'
         style={styleMarkdownTextArea}
         onChange={this.onChange}
@@ -102,7 +114,7 @@ var MarkdownEditorContent = createClass({
   },
 
   onChange: function() {
-    var content = document.getElementById('rmd-textarea').value;
+    var content = this.textAreaElement.value;
     var markdownContent = MarkdownUtils.toMarkdown(content);
     PublicMarkdownEditorActions.updateText(markdownContent);
 
