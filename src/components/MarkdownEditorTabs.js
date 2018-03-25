@@ -26,18 +26,9 @@ var MarkdownEditorTabs = createClass({
   },
 
   render: function() {
-
-    var styleActiveTab = MarkdownEditorTabs.defaultProps.styles.styleActiveTab;
-    var styleMarkdownEditorTabs = MarkdownEditorTabs.defaultProps.styles.styleMarkdownEditorTabs;
-    var styleTab = MarkdownEditorTabs.defaultProps.styles.styleTab;
-
-    objectAssign(styleActiveTab, this.props.styles.styleActiveTab);
-    objectAssign(styleMarkdownEditorTabs, this.props.styles.styleMarkdownEditorTabs);
-    objectAssign(styleTab, this.props.styles.styleTab);
-
-    if(this.props.hasOwnProperty('styles') && this.props.styles.hasOwnProperty('styleActiveTab')) {
-        Object.assign(styleActiveTab, this.props.styles.styleActiveTab);
-    }
+    var styleActiveTab = objectAssign({}, MarkdownEditorTabs.defaultProps.styles.styleActiveTab, this.props.styles.styleActiveTab);
+    var styleMarkdownEditorTabs = objectAssign({}, MarkdownEditorTabs.defaultProps.styles.styleMarkdownEditorTabs, this.props.styles.styleMarkdownEditorTabs);
+    var styleTab = objectAssign({}, MarkdownEditorTabs.defaultProps.styles.styleTab, this.props.styles.styleTab);
 
     var editorTabStyle;
     var previewTabStyle;

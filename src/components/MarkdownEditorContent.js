@@ -87,8 +87,7 @@ var MarkdownEditorContent = createClass({
   },
 
   render: function() {
-    var styleMarkdownTextArea = MarkdownEditorContent.defaultProps.styles.styleMarkdownTextArea
-    objectAssign(styleMarkdownTextArea, this.props.styles.styleMarkdownTextArea)
+     var styleMarkdownTextArea = objectAssign(MarkdownEditorContent.defaultProps.styles.styleMarkdownTextArea, this.props.styles.styleMarkdownTextArea)
 
     return (
       <textarea

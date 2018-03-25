@@ -37,8 +37,7 @@ var MarkdownEditorMenu = createClass({
     var headerButton = this.getButtonWithoutIcon(_disabled, this.handleHeaderButtonClick, 'md-editor-menu-header', 'Header');
     var subHeaderButton = this.getButtonWithoutIcon(_disabled, this.handleSubHeaderButtonClick, 'md-editor-menu-subheader', 'Subheader');
 
-    var styleMarkdownMenu = MarkdownEditorMenu.defaultProps.styles.styleMarkdownMenu;
-    objectAssign({}, styleMarkdownMenu, this.props.styles.styleMarkdownMenu);
+    var styleMarkdownMenu = objectAssign({}, MarkdownEditorMenu.defaultProps.styles.styleMarkdownMenu, this.props.styles.styleMarkdownMenu);
 
     return (
       <div style={styleMarkdownMenu} className='md-editor-menu'>

@@ -61,11 +61,8 @@ var MarkdownEditor = createClass({
       editorMenu = null;
     }
 
-    var styleMarkdownEditorHeader = MarkdownEditor.defaultProps.styles.styleMarkdownEditorHeader;
-    objectAssign({}, styleMarkdownEditorHeader, this.props.styles.styleMarkdownEditorHeader);
-
-    var styleMarkdownEditorContainer = MarkdownEditor.defaultProps.styles.styleMarkdownEditorContainer;
-    objectAssign({}, styleMarkdownEditorContainer, this.props.styles.styleMarkdownEditorContainer);
+    var styleMarkdownEditorHeader = objectAssign({}, MarkdownEditor.defaultProps.styles.styleMarkdownEditorHeader, this.props.styles.styleMarkdownEditorHeader);
+    var styleMarkdownEditorContainer = objectAssign({}, MarkdownEditor.defaultProps.styles.styleMarkdownEditorContainer, this.props.styles.styleMarkdownEditorContainer);
 
     return (
       <div style={styleMarkdownEditorContainer}>

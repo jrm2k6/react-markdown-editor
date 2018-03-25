@@ -15,8 +15,7 @@ var MarkdownEditorPreview = createClass({
     var htmlContent = this.props.content.replace(/[\n]/g, '  \n');
     htmlContent = Markdown.toHTML(htmlContent);
 
-    var styleMarkdownPreviewArea = MarkdownEditorPreview.defaultProps.styles.styleMarkdownPreviewArea
-    objectAssign(styleMarkdownPreviewArea, this.props.styles.styleMarkdownPreviewArea);
+    var styleMarkdownPreviewArea = objectAssign(MarkdownEditorPreview.defaultProps.styles.styleMarkdownPreviewArea, this.props.styles.styleMarkdownPreviewArea);
 
     return (
       <div
