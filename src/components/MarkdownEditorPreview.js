@@ -1,11 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var PropTypes = require('prop-types');
+var createClass = require('create-react-class');
 var Markdown = require('markdown').markdown;
 var objectAssign = require('object-assign');
 
-var MarkdownEditorPreview = React.createClass({
+var MarkdownEditorPreview = createClass({
   propTypes: {
-    content: React.PropTypes.string.isRequired
+    content: PropTypes.string.isRequired
   },
 
   render: function() {
@@ -13,8 +15,7 @@ var MarkdownEditorPreview = React.createClass({
     var htmlContent = this.props.content.replace(/[\n]/g, '  \n');
     htmlContent = Markdown.toHTML(htmlContent);
 
-    var styleMarkdownPreviewArea = MarkdownEditorPreview.defaultProps.styles.styleMarkdownPreviewArea
-    objectAssign(styleMarkdownPreviewArea, this.props.styles.styleMarkdownPreviewArea);
+    var styleMarkdownPreviewArea = objectAssign(MarkdownEditorPreview.defaultProps.styles.styleMarkdownPreviewArea, this.props.styles.styleMarkdownPreviewArea);
 
     return (
       <div

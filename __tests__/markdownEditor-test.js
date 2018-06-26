@@ -7,17 +7,21 @@ jest.dontMock('../src/mixins/ButtonManagerMixin.js');
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var TestUtils = require('react-addons-test-utils');
+var TestUtils = require('react-dom/test-utils');
+var createRenderer = require('react-test-renderer/shallow').createRenderer;
 var MarkdownEditor = require('../src/MarkdownEditor');
 var MarkdownEditorMenu = require('../src/components/MarkdownEditorMenu');
 var MarkdownEditorTabs = require('../src/components/MarkdownEditorTabs');
 var MarkdownEditorActions = require('../src/actions/MarkdownEditorActions');
 var PublicMarkdownEditorActions = require('../src/actions/PublicMarkdownEditorActions');
 var enzyme = require('enzyme');
+var Adapter = require('enzyme-adapter-react-16');
+
+enzyme.configure({ adapter: new Adapter() });
 
 describe('creates markdown editor', function() {
     it('creates markdown editor element composed of two divs', function() {
-        var renderer = TestUtils.createRenderer();
+        var renderer = createRenderer();
         renderer.render(<MarkdownEditor
           initialContent="initialContent"
           iconsSet="font-awesome"/>
@@ -27,7 +31,7 @@ describe('creates markdown editor', function() {
     });
 
     it('markdown editor header is composed of two divs in edit mode', function() {
-        var renderer = TestUtils.createRenderer();
+        var renderer = createRenderer();
         renderer.render(<MarkdownEditor initialContent="initialContent" iconsSet="font-awesome"/>);
 
         var result = renderer.getRenderOutput();

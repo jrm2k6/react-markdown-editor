@@ -1,16 +1,18 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Reflux = require('reflux');
+var createClass = require('create-react-class');
 var ButtonManagerMixin = require('../mixins/ButtonManagerMixin');
 var MarkdownSelectionStore = require('../stores/MarkdownSelectionStore');
 var MarkdownEditorActions = require('../actions/MarkdownEditorActions');
+var PropTypes = require('prop-types');
 var objectAssign = require('object-assign');
 
-var MarkdownEditorMenu = React.createClass({
+var MarkdownEditorMenu = createClass({
   mixins: [Reflux.ListenerMixin, ButtonManagerMixin],
 
   propTypes: {
-    iconsSet: React.PropTypes.string.isRequired
+    iconsSet: PropTypes.string.isRequired
   },
 
   getInitialState: function() {
@@ -35,8 +37,7 @@ var MarkdownEditorMenu = React.createClass({
     var headerButton = this.getButtonWithoutIcon(_disabled, this.handleHeaderButtonClick, 'md-editor-menu-header', 'Header');
     var subHeaderButton = this.getButtonWithoutIcon(_disabled, this.handleSubHeaderButtonClick, 'md-editor-menu-subheader', 'Subheader');
 
-    var styleMarkdownMenu = MarkdownEditorMenu.defaultProps.styles.styleMarkdownMenu;
-    objectAssign(styleMarkdownMenu, this.props.styles.styleMarkdownMenu);
+    var styleMarkdownMenu = objectAssign({}, MarkdownEditorMenu.defaultProps.styles.styleMarkdownMenu, this.props.styles.styleMarkdownMenu);
 
     return (
       <div style={styleMarkdownMenu} className='md-editor-menu'>
@@ -104,5 +105,7 @@ MarkdownEditorMenu.defaultProps = {
         }
     }
 }
+
+MarkdownEditorMenu.displayName = 'MarkdownEditorMenu';
 
 module.exports = MarkdownEditorMenu;

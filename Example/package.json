@@ -9,8 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "create-react-class": "^15.6.3",
     "react-markdown-editor": "file:.."
   },
   "devDependencies": {
